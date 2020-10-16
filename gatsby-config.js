@@ -1,13 +1,14 @@
 module.exports = {
   plugins: [
-    `gatsby-plugin-graphql-codegen`,
+    'gatsby-plugin-graphql-codegen',
     {
-      resolve: `gatsby-plugin-typescript`,
+      resolve: 'gatsby-plugin-typescript',
       options: {
         isTSX: true,
-        jsxPragma: `jsx`,
+        jsxPragma: 'jsx',
         allExtensions: true,
       },
-    }
+    },
+    'gatsby-plugin-emotion'
   ],
-}
+};
