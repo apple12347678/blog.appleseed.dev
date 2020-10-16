@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { graphql } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import { HomeDataQuery } from '../../graphql-types';
 import Layout from '../components/layout';
@@ -16,12 +16,15 @@ export default function Home({ data, location }: IHomeProps) {
 
   return (
     <Layout location={location} title={siteTitle}>
+      <h1>Hello</h1>
       {posts.length === 0 ? (
         <p>No posts</p>
       ) : (
         <ol>
           {posts.map((post) => (
-            <p key={post.fields!.slug}>{post.frontmatter!.title}</p>
+            <span key={post.fields!.slug}>
+              <Link to={post.fields!.slug!}>{post.frontmatter!.title}</Link>
+            </span>
           ))}
         </ol>
       )}
