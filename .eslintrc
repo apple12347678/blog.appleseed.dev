@@ -74,6 +74,8 @@
         "format": ["UPPER_CASE"]
       }
     ],
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
     "simple-import-sort/sort": [
