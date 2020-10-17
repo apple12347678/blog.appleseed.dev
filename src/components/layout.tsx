@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import { Link } from 'gatsby';
 
-import githubDark from '../assets/github-dark.png';
+import GithubIcon from '../assets/github.svg';
 import { globalStyle, theme, ThemeProps } from './style';
 
 const Container = styled.div<ThemeProps>`
@@ -37,6 +37,7 @@ const HomeLink = styled.span`
   a {
     text-decoration: none;
     user-select: none;
+    display: inherit;
   }
 `;
 
@@ -71,7 +72,7 @@ export default function Layout({ location, children }: ILayoutProps) {
               <Link to="/">appleseed.dev</Link>
             </HomeLink>
             <a href="https://github.com/apple12347678">
-              <Github src={githubDark} />
+              <Github src={GithubIcon} />
             </a>
           </Header>
           <main>{children}</main>
