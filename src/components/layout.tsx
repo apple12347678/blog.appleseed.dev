@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import { Link } from 'gatsby';
 
-import githubDark from '../../content/assets/github-dark.png';
+import githubDark from '../assets/github-dark.png';
 import { globalStyle, theme, ThemeProps } from './style';
 
 const Container = styled.div<ThemeProps>`
