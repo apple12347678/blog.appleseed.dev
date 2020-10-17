@@ -5,7 +5,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
   // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/post.tsx`);
+  const BlogPost = path.resolve(`./src/templates/post.tsx`);
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -43,8 +43,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         index === posts.length - 1 ? null : posts[index + 1].id;
 
       createPage({
-        path: post.fields.slug,
-        component: blogPost,
+        path: `/post${post.fields.slug}`,
+        component: BlogPost,
         context: {
           id: post.id,
           previousPostId,

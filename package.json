@@ -12,7 +12,7 @@
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
-    "lint": "eslint --ext js,jsx,ts,tsx src/**",
+    "lint": "eslint src",
     "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
@@ -53,6 +53,7 @@
     "@typescript-eslint/parser": "^4.4.1",
     "eslint": "^7.11.0",
     "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.13.0",
     "eslint-import-resolver-typescript": "^2.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",

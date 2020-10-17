@@ -18,7 +18,8 @@
     "plugin:react/recommended",
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier"
   ],
   "rules": {
     "@typescript-eslint/explicit-module-boundary-types": "off",
@@ -81,6 +82,7 @@
     "import/extensions": "off",
     "import/prefer-default-export": "off",
     "prettier/prettier": "error",
+    "react/jsx-indent": "off",
     "react/jsx-filename-extension": "off",
     "react/require-default-props": "off",
     "simple-import-sort/sort": [

@@ -7,6 +7,7 @@ import { BlogPostBySlugQuery } from '../../graphql-types';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { ThemeProps } from '../components/style';
+import Tag from '../components/tag';
 
 const BlogPostContainer = styled.div<ThemeProps>`
   max-width: ${(props) => props.theme.breakpoints.sm}px;
@@ -16,6 +17,14 @@ const BlogPostContainer = styled.div<ThemeProps>`
 const BlogPostTitle = styled.h1`
   font-size: 3rem;
   font-weight: 700;
+`;
+
+const BlogPostTagContainer = styled.div`
+  margin-block-start: 1rem;
+  line-height: 2;
+  & > a:not(:last-child) {
+    margin-right: 10px;
+  }
 `;
 
 const BlogPostBody = styled.section`
@@ -33,6 +42,7 @@ export default function BlogPostTemplate({
 }: IBlogPostTemplateProps) {
   const post = data.markdownRemark;
   const siteTitle = data.site?.siteMetadata?.title || 'Title';
+  const tags = post?.frontmatter?.tags;
   return (
     <Layout location={location} title={siteTitle}>
       <SEO title={post?.frontmatter?.title || ''} />
@@ -43,6 +53,13 @@ export default function BlogPostTemplate({
               {post?.frontmatter?.title}
             </BlogPostTitle>
             <p>{post?.frontmatter?.date}</p>
+            <BlogPostTagContainer>
+              {tags
+                ? tags.map((tag) => (
+                    <Tag key={tag} name={tag!} to={`/tag/${tag!}`} />
+                  ))
+                : null}
+            </BlogPostTagContainer>
           </header>
           {/* eslint-disable react/no-danger,@typescript-eslint/naming-convention */}
           <BlogPostBody
