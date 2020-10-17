@@ -2982,6 +2982,11 @@ export type StringQueryOperatorInput = {
   glob?: Maybe<Scalars['String']>;
 };
 
+export type SeoDataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SeoDataQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
+
 export type NotFoundPageDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 

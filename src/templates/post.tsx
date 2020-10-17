@@ -5,6 +5,7 @@ import { graphql } from 'gatsby';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
 import Layout from '../components/layout';
+import SEO from '../components/seo';
 import { ThemeProps } from '../components/style';
 
 const BlogPostContainer = styled.div<ThemeProps>`
@@ -34,6 +35,7 @@ export default function BlogPostTemplate({
   const siteTitle = data.site?.siteMetadata?.title || 'Title';
   return (
     <Layout location={location} title={siteTitle}>
+      <SEO title={post?.frontmatter?.title || ''} />
       <BlogPostContainer>
         <article itemScope itemType="http://schema.org/Article">
           <header>

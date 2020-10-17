@@ -4,6 +4,7 @@ import { graphql, Link } from 'gatsby';
 
 import { HomeDataQuery } from '../../graphql-types';
 import Layout from '../components/layout';
+import SEO from '../components/seo';
 
 interface IHomeProps {
   data: HomeDataQuery;
@@ -16,6 +17,7 @@ export default function Home({ data, location }: IHomeProps) {
 
   return (
     <Layout location={location} title={siteTitle}>
+      <SEO title="Home" />
       <h1>Hello</h1>
       {posts.length === 0 ? (
         <p>No posts</p>

@@ -82,6 +82,7 @@
     "import/prefer-default-export": "off",
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "off",
+    "react/require-default-props": "off",
     "simple-import-sort/sort": [
       "warn",
       {
