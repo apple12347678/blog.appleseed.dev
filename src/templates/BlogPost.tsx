@@ -4,10 +4,8 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
-import { ThemeProps } from '../components/style';
-import Tag from '../components/tag';
+import { Layout, SEO, Tag } from '../components';
+import { ThemeProps } from '../styles/style';
 
 const BlogPostContainer = styled.div<ThemeProps>`
   max-width: ${(props) => props.theme.breakpoints.sm}px;

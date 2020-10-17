@@ -3,8 +3,7 @@ import React from 'react';
 import { graphql, Link } from 'gatsby';
 
 import { HomeDataQuery } from '../../graphql-types';
-import Layout from '../components/layout';
-import SEO from '../components/seo';
+import { Layout, SEO } from '../components';
 
 interface IHomeProps {
   data: HomeDataQuery;

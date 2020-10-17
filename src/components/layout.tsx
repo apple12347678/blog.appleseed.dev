@@ -6,7 +6,7 @@ import { ThemeProvider } from 'emotion-theming';
 import { Link } from 'gatsby';
 
 import GithubIcon from '../assets/github.svg';
-import { globalStyle, theme, ThemeProps } from './style';
+import { globalStyle, theme, ThemeProps } from '../styles/style';
 
 const Container = styled.div<ThemeProps>`
   padding: 1.5rem 2rem;
