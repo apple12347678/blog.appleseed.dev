@@ -10,7 +10,8 @@ import GithubIcon from '../assets/github.svg';
 import NetlifyIcon from '../assets/netlify.svg';
 import ReactIcon from '../assets/react.svg';
 import TypescriptIcon from '../assets/typescript.svg';
-import { globalStyle, theme, ThemeProps } from '../styles/style';
+import { globalStyle } from '../styles/globalStyle';
+import { theme, ThemeProps } from '../styles/theme';
 
 const Container = styled.div<ThemeProps>`
   padding: 1.5rem 2rem;
@@ -35,13 +36,13 @@ const Header = styled.header`
   justify-content: space-between;
 `;
 
-const HomeLink = styled(Link)`
+const HomeLink = styled.span`
   font-size: 1.25rem;
   font-weight: 300;
-  user-select: none;
-  cursor: pointer;
-  &:hover {
+  a {
     text-decoration: none;
+    user-select: none;
+    display: inherit;
   }
 `;
 
@@ -56,7 +57,6 @@ const SVGWrapper = styled.img<{ $sm?: boolean }>`
   width: 32px;
   height: 32px;
   `}
-  display: inherit;
 `;
 
 const Footer = styled.footer`
@@ -97,7 +97,9 @@ export default function Layout({ location, children }: ILayoutProps) {
       <ThemeProvider theme={theme}>
         <Container>
           <Header>
-            <HomeLink to="/">appleseed.dev</HomeLink>
+            <HomeLink>
+              <Link to="/">appleseed.dev</Link>
+            </HomeLink>
             <a href="https://github.com/apple12347678">
               <SVGWrapper src={GithubIcon} />
             </a>
