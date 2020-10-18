@@ -6,14 +6,17 @@ const { createFilePath } = require('gatsby-source-filesystem');
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  // Define a template for blog post
   const BlogPost = path.resolve(`./src/templates/BlogPost.tsx`);
 
-  // Get all markdown blog posts sorted by date
   const result = await graphql(
     `
       {
         allMarkdownRemark(
+          ${
+            process.env.NODE_ENV === 'production'
+              ? 'filter: {frontmatter: {test: {ne: true}}}'
+              : ''
+          }
           sort: { fields: [frontmatter___date], order: ASC }
           limit: 1000
         ) {
@@ -72,16 +75,10 @@ exports.onCreateNode = ({ node, actions, getNode, getNodesByType }) => {
     const tagNodes = getNodesByType(`Tag`);
     node.frontmatter.tags.forEach((newTag) => {
       const searchedTag = tagNodes.find((n) => n.name === newTag);
-      if (searchedTag) {
-        // createParentChildLink({
-        //   parent: searchedTag.id,
-        //   child: node.id,
-        // });
-      } else {
+      if (!searchedTag) {
         createNode({
           name: newTag,
           id: uuidV4(),
-          // children: [node.id],
           internal: {
             type: `Tag`,
             contentDigest: crypto
@@ -122,6 +119,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       description: String!
       date: Date! @dateformat
       tags: [String!]!
+      test: Boolean
     }
 
     type Fields {

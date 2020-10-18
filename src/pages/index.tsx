@@ -1,9 +1,18 @@
 import React from 'react';
 
-import { graphql, Link } from 'gatsby';
+import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
 
 import { HomeDataQuery } from '../../graphql-types';
-import { Layout, SEO } from '../components';
+import { Abstract, Container, Layout, SEO } from '../components';
+
+const BannerContainer = styled.div`
+  padding: 60px 0;
+`;
+
+const Title = styled.h1`
+  font-size: 3rem;
+`;
 
 interface IHomeProps {
   data: HomeDataQuery;
@@ -16,20 +25,27 @@ export default function Home({ data, location }: IHomeProps) {
   return (
     <Layout location={location}>
       <SEO title="Home" />
-      <h1>Hello</h1>
-      {posts.length === 0 ? (
-        <p>No posts</p>
-      ) : (
-        <ol>
-          {posts.map((post) => (
-            <li key={post.fields.slug}>
-              <Link to={`/post${post.fields.slug}`}>
-                {post.frontmatter.title}
-              </Link>
-            </li>
-          ))}
-        </ol>
-      )}
+      <Container>
+        <BannerContainer>
+          <Title>Hello</Title>
+          <p>This is appleseed&#39;s dev blog.</p>
+        </BannerContainer>
+        {posts.length === 0 ? (
+          <p>No posts currently available.</p>
+        ) : (
+          posts.map((post) => (
+            <Abstract
+              key={post.fields.slug}
+              title={post.frontmatter.title}
+              slug={post.fields.slug}
+              description={post.frontmatter.description}
+              excerpt={post.excerpt || undefined}
+              date={post.frontmatter.date}
+              tags={post.frontmatter.tags}
+            />
+          ))
+        )}
+      </Container>
     </Layout>
   );
 }
@@ -41,7 +57,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(
+      filter: { frontmatter: { test: { ne: true } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
       nodes {
         excerpt
         fields {
@@ -51,6 +70,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          tags
         }
       }
     }

@@ -5,6 +5,7 @@ description: 'A test document'
 tags:
   - random
   - test
+test: true
 ---
 
 # A test document

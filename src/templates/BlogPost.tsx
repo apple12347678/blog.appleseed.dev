@@ -4,25 +4,11 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
-import { Layout, SEO, Tag } from '../components';
-import { ThemeProps } from '../styles/style';
-
-const BlogPostContainer = styled.div<ThemeProps>`
-  max-width: ${(props) => props.theme.breakpoints.sm}px;
-  margin: 0 auto;
-`;
+import { Container, Error, Layout, SEO, TagContainer } from '../components';
 
 const BlogPostTitle = styled.h1`
   font-size: 3rem;
   font-weight: 700;
-`;
-
-const BlogPostTagContainer = styled.div`
-  margin-block-start: 1rem;
-  line-height: 2;
-  & > *:not(:last-child) {
-    margin-right: 10px;
-  }
 `;
 
 const BlogPostBody = styled.section`
@@ -40,13 +26,13 @@ export default function BlogPostTemplate({
 }: IBlogPostTemplateProps) {
   const post = data.markdownRemark;
   if (!post || !post.html) {
-    return <div />;
+    return <Error />;
   }
   const { tags } = post.frontmatter;
   return (
     <Layout location={location}>
       <SEO title={post.frontmatter.title} />
-      <BlogPostContainer>
+      <Container>
         <article itemScope itemType="http://schema.org/Article">
           <header>
             <BlogPostTitle itemProp="headline">
@@ -54,11 +40,7 @@ export default function BlogPostTemplate({
             </BlogPostTitle>
             <p>{post.frontmatter.description}</p>
             <p>{post.frontmatter.date}</p>
-            <BlogPostTagContainer>
-              {tags.map((tag) => (
-                <Tag key={tag} name={tag} />
-              ))}
-            </BlogPostTagContainer>
+            <TagContainer tags={tags} />
           </header>
           {/* eslint-disable react/no-danger,@typescript-eslint/naming-convention */}
           <BlogPostBody
@@ -67,7 +49,7 @@ export default function BlogPostTemplate({
           />
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}
         </article>
-      </BlogPostContainer>
+      </Container>
     </Layout>
   );
 }
