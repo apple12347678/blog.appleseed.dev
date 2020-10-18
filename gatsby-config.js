@@ -51,7 +51,56 @@ module.exports = {
     },
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
-    'gatsby-plugin-feed',
+    {
+      resolve: 'gatsby-plugin-feed',
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                site_url
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMarkdownRemark } }) => {
+              return allMarkdownRemark.edges.map((edge) => {
+                return Object.assign({}, edge.node.frontmatter, {
+                  description: edge.node.excerpt,
+                  url: `${site.siteMetadata.site_url}/post${edge.node.fields.slug}`,
+                  custom_elements: [{ 'content:encoded': edge.node.html }],
+                });
+              });
+            },
+            query: `
+              {
+                allMarkdownRemark {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields {
+                        slug
+                      }
+                      frontmatter {
+                        title
+                        date
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml',
+            title: 'RSS for blog.appleseed.dev',
+          },
+        ],
+      },
+    },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {

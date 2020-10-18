@@ -2514,6 +2514,11 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___name'
   | 'pluginCreator___pluginOptions___maxWidth'
   | 'pluginCreator___pluginOptions___wrapperStyle'
+  | 'pluginCreator___pluginOptions___query'
+  | 'pluginCreator___pluginOptions___feeds'
+  | 'pluginCreator___pluginOptions___feeds___query'
+  | 'pluginCreator___pluginOptions___feeds___output'
+  | 'pluginCreator___pluginOptions___feeds___title'
   | 'pluginCreator___pluginOptions___short_name'
   | 'pluginCreator___pluginOptions___start_url'
   | 'pluginCreator___pluginOptions___background_color'
@@ -2732,6 +2737,11 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___name'
   | 'pluginOptions___maxWidth'
   | 'pluginOptions___wrapperStyle'
+  | 'pluginOptions___query'
+  | 'pluginOptions___feeds'
+  | 'pluginOptions___feeds___query'
+  | 'pluginOptions___feeds___output'
+  | 'pluginOptions___feeds___title'
   | 'pluginOptions___short_name'
   | 'pluginOptions___start_url'
   | 'pluginOptions___background_color'
@@ -2870,6 +2880,8 @@ export type SitePluginPluginOptions = {
   name?: Maybe<Scalars['String']>;
   maxWidth?: Maybe<Scalars['Int']>;
   wrapperStyle?: Maybe<Scalars['String']>;
+  query?: Maybe<Scalars['String']>;
+  feeds?: Maybe<Array<Maybe<SitePluginPluginOptionsFeeds>>>;
   short_name?: Maybe<Scalars['String']>;
   start_url?: Maybe<Scalars['String']>;
   background_color?: Maybe<Scalars['String']>;
@@ -2883,6 +2895,22 @@ export type SitePluginPluginOptions = {
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
 
+export type SitePluginPluginOptionsFeeds = {
+  query?: Maybe<Scalars['String']>;
+  output?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+};
+
+export type SitePluginPluginOptionsFeedsFilterInput = {
+  query?: Maybe<StringQueryOperatorInput>;
+  output?: Maybe<StringQueryOperatorInput>;
+  title?: Maybe<StringQueryOperatorInput>;
+};
+
+export type SitePluginPluginOptionsFeedsFilterListInput = {
+  elemMatch?: Maybe<SitePluginPluginOptionsFeedsFilterInput>;
+};
+
 export type SitePluginPluginOptionsFilterInput = {
   plugins?: Maybe<SitePluginPluginOptionsPluginsFilterListInput>;
   isTSX?: Maybe<BooleanQueryOperatorInput>;
@@ -2892,6 +2920,8 @@ export type SitePluginPluginOptionsFilterInput = {
   name?: Maybe<StringQueryOperatorInput>;
   maxWidth?: Maybe<IntQueryOperatorInput>;
   wrapperStyle?: Maybe<StringQueryOperatorInput>;
+  query?: Maybe<StringQueryOperatorInput>;
+  feeds?: Maybe<SitePluginPluginOptionsFeedsFilterListInput>;
   short_name?: Maybe<StringQueryOperatorInput>;
   start_url?: Maybe<StringQueryOperatorInput>;
   background_color?: Maybe<StringQueryOperatorInput>;
