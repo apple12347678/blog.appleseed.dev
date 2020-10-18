@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
@@ -7,10 +8,10 @@ interface IColorProps {
   $hue: number;
 }
 
-const TagRoot = styled(Link)<IColorProps>`
+const tagRootCss = (props: IColorProps) => css`
   height: 24px;
   padding: 0 8px;
-  background-color: hsl(${(props) => props.$hue}, 40%, 90%);
+  background-color: hsl(${props.$hue}, 40%, 90%);
   border-radius: 10px;
   display: inline-block;
   cursor: pointer;
@@ -18,6 +19,14 @@ const TagRoot = styled(Link)<IColorProps>`
     text-decoration: none;
     opacity: 0.9;
   }
+`;
+
+const TagRootLink = styled(Link)<IColorProps>`
+  ${(props) => tagRootCss(props)}
+`;
+
+const TagRootDiv = styled.div<IColorProps>`
+  ${(props) => tagRootCss(props)}
 `;
 
 const TagTextWrapper = styled.div`
@@ -35,18 +44,27 @@ const TagText = styled.span<IColorProps>`
 
 interface ITagProps {
   name: string;
-  to: string;
+  to?: string;
 }
 
 function Tag({ name, to }: ITagProps) {
   const hue =
     Array.from(name).reduce((acc, cur) => acc + cur.charCodeAt(0), 0) % 360;
+  if (to) {
+    return (
+      <TagRootLink $hue={hue} to={to}>
+        <TagTextWrapper>
+          <TagText $hue={hue}>{name}</TagText>
+        </TagTextWrapper>
+      </TagRootLink>
+    );
+  }
   return (
-    <TagRoot $hue={hue} to={to}>
+    <TagRootDiv $hue={hue}>
       <TagTextWrapper>
         <TagText $hue={hue}>{name}</TagText>
       </TagTextWrapper>
-    </TagRoot>
+    </TagRootDiv>
   );
 }
 

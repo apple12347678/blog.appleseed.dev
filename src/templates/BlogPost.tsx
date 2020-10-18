@@ -52,11 +52,7 @@ export default function BlogPostTemplate({
             </BlogPostTitle>
             <p>{post?.frontmatter?.date}</p>
             <BlogPostTagContainer>
-              {tags
-                ? tags.map((tag) => (
-                    <Tag key={tag} name={tag!} to={`/tag/${tag!}`} />
-                  ))
-                : null}
+              {tags ? tags.map((tag) => <Tag key={tag} name={tag!} />) : null}
             </BlogPostTagContainer>
           </header>
           {/* eslint-disable react/no-danger,@typescript-eslint/naming-convention */}
@@ -65,7 +61,6 @@ export default function BlogPostTemplate({
             itemProp="articleBody"
           />
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}
-          <hr />
         </article>
       </BlogPostContainer>
     </Layout>

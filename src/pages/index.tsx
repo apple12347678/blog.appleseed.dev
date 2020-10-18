@@ -23,11 +23,11 @@ export default function Home({ data, location }: IHomeProps) {
       ) : (
         <ol>
           {posts.map((post) => (
-            <span key={post.fields!.slug}>
-              <Link to={`/post${post.fields!.slug!}`}>
-                {post.frontmatter!.title}
+            <li key={post.fields.slug}>
+              <Link to={`/post${post.fields.slug}`}>
+                {post.frontmatter.title}
               </Link>
-            </span>
+            </li>
           ))}
         </ol>
       )}

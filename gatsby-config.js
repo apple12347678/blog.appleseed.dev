@@ -3,7 +3,7 @@ module.exports = {
     title: "appleseed's dev blog",
     author: {
       name: 'Chankyu Kang',
-      summary: 'A typescript developer',
+      summary: 'A typescript developer, junior system architect',
       email: 'apple12347678@gmail.com',
     },
     description: 'A dev blog of appleseed',

@@ -11,7 +11,7 @@ interface INotFoundPageProps {
 }
 
 export default function NotFoundPage({ data, location }: INotFoundPageProps) {
-  const siteTitle = data.site!.siteMetadata!.title!;
+  const siteTitle = data.site!.siteMetadata!.title;
 
   return (
     <Layout location={location} title={siteTitle}>

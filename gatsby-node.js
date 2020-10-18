@@ -1,4 +1,6 @@
 const path = require('path');
+const crypto = require('crypto');
+const uuidV4 = require('uuid').v4;
 const { createFilePath } = require('gatsby-source-filesystem');
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -55,8 +57,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 };
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions;
+exports.onCreateNode = ({ node, actions, getNode, getNodesByType }) => {
+  const { createNode, createNodeField, createParentChildLink } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode });
@@ -66,6 +68,30 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       node,
       value,
     });
+
+    const tagNodes = getNodesByType(`Tag`);
+    node.frontmatter.tags.forEach((newTag) => {
+      const searchedTag = tagNodes.find((n) => n.name === newTag);
+      if (searchedTag) {
+        // createParentChildLink({
+        //   parent: searchedTag.id,
+        //   child: node.id,
+        // });
+      } else {
+        createNode({
+          name: newTag,
+          id: uuidV4(),
+          // children: [node.id],
+          internal: {
+            type: `Tag`,
+            contentDigest: crypto
+              .createHash(`md5`)
+              .update(newTag)
+              .digest(`hex`),
+          },
+        });
+      }
+    });
   }
 };
 
@@ -74,33 +100,35 @@ exports.createSchemaCustomization = ({ actions }) => {
 
   createTypes(`
     type SiteSiteMetadata {
-      author: Author
+      title: String!
+      author: Author!
       siteUrl: String
-      social: Social
     }
 
     type Author {
-      name: String
+      name: String!
       summary: String
-    }
-
-    type Social {
-      twitter: String
+      email: String
     }
 
     type MarkdownRemark implements Node {
-      frontmatter: Frontmatter
-      fields: Fields
+      frontmatter: Frontmatter!
+      fields: Fields!
     }
 
     type Frontmatter {
-      title: String
-      description: String
-      date: Date @dateformat
+      title: String!
+      description: String!
+      date: Date! @dateformat
+      tags: [String]!
     }
 
     type Fields {
-      slug: String
+      slug: String!
+    }
+
+    type Tag implements Node {
+      name: String!
     }
   `);
 };
