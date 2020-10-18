@@ -11,11 +11,10 @@ interface IHomeProps {
 }
 
 export default function Home({ data, location }: IHomeProps) {
-  const siteTitle: string = data.site?.siteMetadata?.title || 'Title';
   const posts = data.allMarkdownRemark.nodes;
 
   return (
-    <Layout location={location} title={siteTitle}>
+    <Layout location={location}>
       <SEO title="Home" />
       <h1>Hello</h1>
       {posts.length === 0 ? (

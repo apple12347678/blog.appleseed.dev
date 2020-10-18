@@ -718,10 +718,10 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___date'
   | 'childMarkdownRemark___frontmatter___tags'
   | 'childMarkdownRemark___fields___slug'
+  | 'childMarkdownRemark___html'
   | 'childMarkdownRemark___excerpt'
   | 'childMarkdownRemark___rawMarkdownBody'
   | 'childMarkdownRemark___fileAbsolutePath'
-  | 'childMarkdownRemark___html'
   | 'childMarkdownRemark___htmlAst'
   | 'childMarkdownRemark___excerptAst'
   | 'childMarkdownRemark___headings'
@@ -843,7 +843,7 @@ export type Frontmatter = {
   title: Scalars['String'];
   description: Scalars['String'];
   date: Scalars['Date'];
-  tags: Array<Maybe<Scalars['String']>>;
+  tags: Array<Scalars['String']>;
 };
 
 
@@ -1434,10 +1434,10 @@ export type MarkdownRemark = Node & {
   id: Scalars['ID'];
   frontmatter: Frontmatter;
   fields: Fields;
+  html?: Maybe<Scalars['String']>;
   excerpt?: Maybe<Scalars['String']>;
   rawMarkdownBody?: Maybe<Scalars['String']>;
   fileAbsolutePath?: Maybe<Scalars['String']>;
-  html?: Maybe<Scalars['String']>;
   htmlAst?: Maybe<Scalars['JSON']>;
   excerptAst?: Maybe<Scalars['JSON']>;
   headings?: Maybe<Array<Maybe<MarkdownHeading>>>;
@@ -1509,10 +1509,10 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___date'
   | 'frontmatter___tags'
   | 'fields___slug'
+  | 'html'
   | 'excerpt'
   | 'rawMarkdownBody'
   | 'fileAbsolutePath'
-  | 'html'
   | 'htmlAst'
   | 'excerptAst'
   | 'headings'
@@ -1614,10 +1614,10 @@ export type MarkdownRemarkFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
   frontmatter?: Maybe<FrontmatterFilterInput>;
   fields?: Maybe<FieldsFilterInput>;
+  html?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
-  html?: Maybe<StringQueryOperatorInput>;
   htmlAst?: Maybe<JsonQueryOperatorInput>;
   excerptAst?: Maybe<JsonQueryOperatorInput>;
   headings?: Maybe<MarkdownHeadingFilterListInput>;
@@ -1879,10 +1879,10 @@ export type QueryMarkdownRemarkArgs = {
   id?: Maybe<StringQueryOperatorInput>;
   frontmatter?: Maybe<FrontmatterFilterInput>;
   fields?: Maybe<FieldsFilterInput>;
+  html?: Maybe<StringQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
-  html?: Maybe<StringQueryOperatorInput>;
   htmlAst?: Maybe<JsonQueryOperatorInput>;
   excerptAst?: Maybe<JsonQueryOperatorInput>;
   headings?: Maybe<MarkdownHeadingFilterListInput>;
@@ -3176,11 +3176,6 @@ export type SeoDataQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type SeoDataQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title' | 'description'>> }> };
-
-export type NotFoundPageDataQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type NotFoundPageDataQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title'>> }> };
 
 export type HomeDataQueryVariables = Exact<{ [key: string]: never; }>;
 

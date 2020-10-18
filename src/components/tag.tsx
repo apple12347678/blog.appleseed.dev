@@ -10,11 +10,10 @@ interface IColorProps {
 
 const tagRootCss = (props: IColorProps) => css`
   height: 24px;
-  padding: 0 8px;
+  padding: 0 10px;
   background-color: hsl(${props.$hue}, 40%, 90%);
-  border-radius: 10px;
+  border-radius: 12px;
   display: inline-block;
-  cursor: pointer;
   &:hover {
     text-decoration: none;
     opacity: 0.9;
@@ -22,11 +21,12 @@ const tagRootCss = (props: IColorProps) => css`
 `;
 
 const TagRootLink = styled(Link)<IColorProps>`
-  ${(props) => tagRootCss(props)}
+  ${tagRootCss}
+  cursor: pointer;
 `;
 
 const TagRootDiv = styled.div<IColorProps>`
-  ${(props) => tagRootCss(props)}
+  ${tagRootCss}
 `;
 
 const TagTextWrapper = styled.div`

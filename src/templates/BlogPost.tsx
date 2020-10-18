@@ -20,7 +20,7 @@ const BlogPostTitle = styled.h1`
 const BlogPostTagContainer = styled.div`
   margin-block-start: 1rem;
   line-height: 2;
-  & > a:not(:last-child) {
+  & > *:not(:last-child) {
     margin-right: 10px;
   }
 `;
@@ -39,25 +39,30 @@ export default function BlogPostTemplate({
   location,
 }: IBlogPostTemplateProps) {
   const post = data.markdownRemark;
-  const siteTitle = data.site?.siteMetadata?.title || 'Title';
-  const tags = post?.frontmatter?.tags;
+  if (!post || !post.html) {
+    return <div />;
+  }
+  const { tags } = post.frontmatter;
   return (
-    <Layout location={location} title={siteTitle}>
-      <SEO title={post?.frontmatter?.title || ''} />
+    <Layout location={location}>
+      <SEO title={post.frontmatter.title} />
       <BlogPostContainer>
         <article itemScope itemType="http://schema.org/Article">
           <header>
             <BlogPostTitle itemProp="headline">
-              {post?.frontmatter?.title}
+              {post.frontmatter.title}
             </BlogPostTitle>
-            <p>{post?.frontmatter?.date}</p>
+            <p>{post.frontmatter.description}</p>
+            <p>{post.frontmatter.date}</p>
             <BlogPostTagContainer>
-              {tags ? tags.map((tag) => <Tag key={tag} name={tag!} />) : null}
+              {tags.map((tag) => (
+                <Tag key={tag} name={tag} />
+              ))}
             </BlogPostTagContainer>
           </header>
           {/* eslint-disable react/no-danger,@typescript-eslint/naming-convention */}
           <BlogPostBody
-            dangerouslySetInnerHTML={{ __html: post?.html || '' }}
+            dangerouslySetInnerHTML={{ __html: post.html }}
             itemProp="articleBody"
           />
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}

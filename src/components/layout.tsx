@@ -54,8 +54,6 @@ const Copyright = styled.span<ThemeProps>`
 
 interface ILayoutProps {
   location: globalThis.Location;
-  // eslint-disable-next-line react/no-unused-prop-types
-  title: string;
   children: React.ReactNode;
 }
 

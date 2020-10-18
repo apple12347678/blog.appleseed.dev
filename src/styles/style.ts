@@ -23,6 +23,20 @@ export const globalStyle = css`
     text-decoration: underline;
   }
 
+  h1,
+  h2 {
+    font-weight: 700;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.25em;
+  }
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    margin-block-start: 0.5em;
+    margin-block-end: 0.15em;
+  }
   h1 {
     font-size: 2.25rem;
   }
@@ -31,6 +45,15 @@ export const globalStyle = css`
   }
   h3 {
     font-size: 1.75rem;
+  }
+  h4 {
+    font-size: 1.6rem;
+  }
+  h5 {
+    font-size: 1.5rem;
+  }
+  h6 {
+    font-size: 1.4rem;
   }
 
   p {
