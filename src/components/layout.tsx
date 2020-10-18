@@ -35,13 +35,13 @@ const Header = styled.header`
   justify-content: space-between;
 `;
 
-const HomeLink = styled.span`
+const HomeLink = styled(Link)`
   font-size: 1.25rem;
   font-weight: 300;
-  a {
+  user-select: none;
+  cursor: pointer;
+  &:hover {
     text-decoration: none;
-    user-select: none;
-    display: inherit;
   }
 `;
 
@@ -56,6 +56,7 @@ const SVGWrapper = styled.img<{ $sm?: boolean }>`
   width: 32px;
   height: 32px;
   `}
+  display: inherit;
 `;
 
 const Footer = styled.footer`
@@ -96,9 +97,7 @@ export default function Layout({ location, children }: ILayoutProps) {
       <ThemeProvider theme={theme}>
         <Container>
           <Header>
-            <HomeLink>
-              <Link to="/">appleseed.dev</Link>
-            </HomeLink>
+            <HomeLink to="/">appleseed.dev</HomeLink>
             <a href="https://github.com/apple12347678">
               <SVGWrapper src={GithubIcon} />
             </a>

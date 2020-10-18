@@ -35,9 +35,9 @@ export default function Abstract({
 }: IAbstractProps) {
   return (
     <AbstractContainer>
-      <Title to={`/post${slug}`}>
-        <h2>{title}</h2>
-      </Title>
+      <h2>
+        <Title to={`/post${slug}`}>{title}</Title>
+      </h2>
       <p>{date}</p>
       <p>{description}</p>
       <p>{excerpt}</p>
