@@ -5,7 +5,11 @@ import styled from '@emotion/styled';
 import { ThemeProvider } from 'emotion-theming';
 import { Link } from 'gatsby';
 
+import GatsbyIcon from '../assets/gatsby.svg';
 import GithubIcon from '../assets/github.svg';
+import NetlifyIcon from '../assets/netlify.svg';
+import ReactIcon from '../assets/react.svg';
+import TypescriptIcon from '../assets/typescript.svg';
 import { globalStyle, theme, ThemeProps } from '../styles/style';
 
 const Container = styled.div<ThemeProps>`
@@ -41,15 +45,41 @@ const HomeLink = styled.span`
   }
 `;
 
-const Github = styled.img`
+const SVGWrapper = styled.img<{ $sm?: boolean }>`
+  ${(props) =>
+    props.$sm
+      ? `
+    width: 20px;
+  height: 20px;
+  `
+      : `
   width: 32px;
   height: 32px;
+  `}
+`;
+
+const Footer = styled.footer`
+  margin-top: 40px;
+  display: flex;
 `;
 
 const Copyright = styled.span<ThemeProps>`
+  margin-right: auto;
   color: ${(props) => props.theme.colors[500]};
   font-size: 0.85rem;
   font-weight: 400;
+  user-select: none;
+`;
+
+const PoweredBy = styled.span<ThemeProps>`
+  color: ${(props) => props.theme.colors[500]};
+  font-size: 0.85rem;
+  font-weight: 400;
+  display: flex;
+  user-select: none;
+  ${SVGWrapper} {
+    margin-left: 6px;
+  }
 `;
 
 interface ILayoutProps {
@@ -70,13 +100,28 @@ export default function Layout({ location, children }: ILayoutProps) {
               <Link to="/">appleseed.dev</Link>
             </HomeLink>
             <a href="https://github.com/apple12347678">
-              <Github src={GithubIcon} />
+              <SVGWrapper src={GithubIcon} />
             </a>
           </Header>
           <main>{children}</main>
-          <footer>
+          <Footer>
             <Copyright>© 2020 by appleseed</Copyright>
-          </footer>
+            <PoweredBy>
+              Powered by
+              <a href="https://reactjs.org/">
+                <SVGWrapper $sm src={ReactIcon} />
+              </a>
+              <a href="https://www.typescriptlang.org/">
+                <SVGWrapper $sm src={TypescriptIcon} />
+              </a>
+              <a href="https://www.gatsbyjs.com/">
+                <SVGWrapper $sm src={GatsbyIcon} />
+              </a>
+              <a href="https://www.netlify.com/">
+                <SVGWrapper $sm src={NetlifyIcon} />
+              </a>
+            </PoweredBy>
+          </Footer>
         </Container>
       </ThemeProvider>
     </div>
