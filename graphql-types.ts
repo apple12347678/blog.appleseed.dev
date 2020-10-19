@@ -1834,8 +1834,6 @@ export type QueryAllDirectoryArgs = {
 export type QuerySiteArgs = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -1990,8 +1988,6 @@ export type QueryAllSitePluginArgs = {
 export type Site = Node & {
   buildTime?: Maybe<Scalars['Date']>;
   siteMetadata?: Maybe<SiteSiteMetadata>;
-  port?: Maybe<Scalars['Int']>;
-  host?: Maybe<Scalars['String']>;
   polyfill?: Maybe<Scalars['Boolean']>;
   pathPrefix?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
@@ -2198,8 +2194,6 @@ export type SiteFieldsEnum =
   | 'siteMetadata___author___email'
   | 'siteMetadata___siteUrl'
   | 'siteMetadata___site_url'
-  | 'port'
-  | 'host'
   | 'polyfill'
   | 'pathPrefix'
   | 'id'
@@ -2292,8 +2286,6 @@ export type SiteFieldsEnum =
 export type SiteFilterInput = {
   buildTime?: Maybe<DateQueryOperatorInput>;
   siteMetadata?: Maybe<SiteSiteMetadataFilterInput>;
-  port?: Maybe<IntQueryOperatorInput>;
-  host?: Maybe<StringQueryOperatorInput>;
   polyfill?: Maybe<BooleanQueryOperatorInput>;
   pathPrefix?: Maybe<StringQueryOperatorInput>;
   id?: Maybe<StringQueryOperatorInput>;
@@ -2351,14 +2343,10 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   id?: Maybe<Scalars['String']>;
-  previousPostId?: Maybe<Scalars['String']>;
-  nextPostId?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextFilterInput = {
   id?: Maybe<StringQueryOperatorInput>;
-  previousPostId?: Maybe<StringQueryOperatorInput>;
-  nextPostId?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
@@ -2461,8 +2449,6 @@ export type SitePageFieldsEnum =
   | 'internal___type'
   | 'isCreatedByStatefulCreatePages'
   | 'context___id'
-  | 'context___previousPostId'
-  | 'context___nextPostId'
   | 'pluginCreator___id'
   | 'pluginCreator___parent___id'
   | 'pluginCreator___parent___parent___id'
@@ -2537,6 +2523,7 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___include_favicon'
   | 'pluginCreator___pluginOptions___legacy'
   | 'pluginCreator___pluginOptions___theme_color_in_head'
+  | 'pluginCreator___pluginOptions___trackingId'
   | 'pluginCreator___pluginOptions___fonts'
   | 'pluginCreator___pluginOptions___fonts___family'
   | 'pluginCreator___pluginOptions___pathCheck'
@@ -2762,6 +2749,7 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___include_favicon'
   | 'pluginOptions___legacy'
   | 'pluginOptions___theme_color_in_head'
+  | 'pluginOptions___trackingId'
   | 'pluginOptions___fonts'
   | 'pluginOptions___fonts___family'
   | 'pluginOptions___pathCheck'
@@ -2900,6 +2888,7 @@ export type SitePluginPluginOptions = {
   include_favicon?: Maybe<Scalars['Boolean']>;
   legacy?: Maybe<Scalars['Boolean']>;
   theme_color_in_head?: Maybe<Scalars['Boolean']>;
+  trackingId?: Maybe<Scalars['String']>;
   fonts?: Maybe<Array<Maybe<SitePluginPluginOptionsFonts>>>;
   pathCheck?: Maybe<Scalars['Boolean']>;
 };
@@ -2941,6 +2930,7 @@ export type SitePluginPluginOptionsFilterInput = {
   include_favicon?: Maybe<BooleanQueryOperatorInput>;
   legacy?: Maybe<BooleanQueryOperatorInput>;
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
+  trackingId?: Maybe<StringQueryOperatorInput>;
   fonts?: Maybe<SitePluginPluginOptionsFontsFilterListInput>;
   pathCheck?: Maybe<BooleanQueryOperatorInput>;
 };

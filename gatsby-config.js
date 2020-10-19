@@ -153,6 +153,12 @@ module.exports = {
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
     {
+      resolve: 'gatsby-plugin-google-analytics',
+      options: {
+        trackingId: 'UA-180825431-1',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-prefetch-google-fonts',
       options: {
         fonts: [
