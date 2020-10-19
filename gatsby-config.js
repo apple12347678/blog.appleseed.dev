@@ -152,6 +152,16 @@ module.exports = {
     },
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
+    {
+      resolve: 'gatsby-plugin-prefetch-google-fonts',
+      options: {
+        fonts: [
+          {
+            family: 'IBM Plex Sans',
+          },
+        ],
+      },
+    },
     'gatsby-plugin-webpack-bundle-analyser-v2',
   ],
 };
