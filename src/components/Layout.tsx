@@ -7,7 +7,6 @@ import { Link } from 'gatsby';
 
 import GatsbyIcon from '../assets/gatsby.svg';
 import GithubIcon from '../assets/github.svg';
-import NetlifyIcon from '../assets/netlify.svg';
 import ReactIcon from '../assets/react.svg';
 import TypescriptIcon from '../assets/typescript.svg';
 import { globalStyle } from '../styles/globalStyle';
@@ -120,9 +119,6 @@ export default function Layout({ location, children }: ILayoutProps) {
               </a>
               <a href="https://www.gatsbyjs.com/">
                 <SVGWrapper $sm src={GatsbyIcon} />
-              </a>
-              <a href="https://www.netlify.com/">
-                <SVGWrapper $sm src={NetlifyIcon} />
               </a>
             </PoweredBy>
           </Footer>
