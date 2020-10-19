@@ -151,5 +151,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-emotion',
+    'gatsby-plugin-webpack-bundle-analyser-v2',
   ],
 };
