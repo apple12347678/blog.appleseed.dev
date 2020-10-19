@@ -28,7 +28,7 @@ const tags = _.isString(argvTag) ? [argvTag] : argvTag;
 const newPostDirPath = path.resolve(
   path.dirname(__dirname),
   'content',
-  'blog',
+  'post',
   slug,
 );
 
