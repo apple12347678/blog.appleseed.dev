@@ -103,7 +103,7 @@ export default function Layout({ location, children }: ILayoutProps) {
               <Link to="/">appleseed.dev</Link>
             </HomeLink>
             <a href="https://github.com/apple12347678">
-              <SVGWrapper src={GithubIcon} />
+              <SVGWrapper alt="github-icon" src={GithubIcon} />
             </a>
           </Header>
           <main>{children}</main>
@@ -112,13 +112,13 @@ export default function Layout({ location, children }: ILayoutProps) {
             <PoweredBy>
               Powered by
               <a href="https://reactjs.org/">
-                <SVGWrapper $sm src={ReactIcon} />
+                <SVGWrapper alt="react-icon" $sm src={ReactIcon} />
               </a>
               <a href="https://www.typescriptlang.org/">
-                <SVGWrapper $sm src={TypescriptIcon} />
+                <SVGWrapper alt="typescript-icon" $sm src={TypescriptIcon} />
               </a>
               <a href="https://www.gatsbyjs.com/">
-                <SVGWrapper $sm src={GatsbyIcon} />
+                <SVGWrapper alt="gatsby-icon" $sm src={GatsbyIcon} />
               </a>
             </PoweredBy>
           </Footer>
