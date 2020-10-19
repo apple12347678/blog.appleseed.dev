@@ -81,6 +81,9 @@ const PoweredBy = styled.span<ThemeProps>`
   ${SVGWrapper} {
     margin-left: 6px;
   }
+  @media (max-width: ${(props) => props.theme.breakpoints.xs}px) {
+    display: none;
+  }
 `;
 
 interface ILayoutProps {
