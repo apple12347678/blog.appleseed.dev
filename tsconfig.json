@@ -10,6 +10,6 @@
     "jsx": "react",
     "resolveJsonModule": true
   },
-  "include": ["src/**/*", "graphql-types.ts"],
+  "include": ["src/**/*", "graphql-types.ts", "script/**/*"],
   "exclude": ["src/assets/**"]
 }

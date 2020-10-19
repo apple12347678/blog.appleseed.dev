@@ -13,7 +13,8 @@
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "lint": "eslint --cache src",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "create": "TS_NODE_PROJECT=tsconfig.script.json yarn ts-node script/create-article.ts"
   },
   "dependencies": {
     "@babel/core": "^7",
@@ -42,6 +43,7 @@
     "gatsby-transformer-remark": "^2.8.42",
     "gatsby-transformer-sharp": "^2.5.18",
     "graphql": "^14",
+    "lodash": "^4.17.20",
     "prismjs": "^1.22.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -65,7 +67,10 @@
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.13",
     "husky": ">=4",
     "lint-staged": ">=10",
-    "prettier": "2.1.2"
+    "prettier": "2.1.2",
+    "ts-node": "^9.0.0",
+    "yaml": "^1.10.0",
+    "yargs": "^16.1.0"
   },
   "repository": {
     "type": "git",
