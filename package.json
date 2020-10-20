@@ -11,7 +11,7 @@
     "start": "yarn dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "check": "yarn tsc && yarn lint && yarn format",
+    "overhaul": "yarn tsc && yarn lint && yarn format",
     "lint": "eslint --cache src",
     "lint:fix": "yarn lint --fix",
     "create-article": "TS_NODE_PROJECT=tsconfig.script.json yarn ts-node script/create-article.ts"

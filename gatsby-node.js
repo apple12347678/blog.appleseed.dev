@@ -110,6 +110,10 @@ exports.createSchemaCustomization = ({ actions }) => {
       siteUrl: String
     }
 
+    type SitePageContext {
+      language: String!
+    }
+
     type Author {
       name: String!
       summary: String

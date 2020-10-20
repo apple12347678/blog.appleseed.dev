@@ -1,18 +1,20 @@
 import React from 'react';
 
 import { useTranslation } from 'gatsby-plugin-react-i18next';
-import { PageContext } from 'gatsby-plugin-react-i18next/dist/types';
 
+import { SitePageContext } from '../../graphql-types';
 import { Layout, SEO } from '../components';
 
 interface INotFoundPageProps {
-  pathContext: PageContext;
+  pathContext: SitePageContext;
 }
 
-export default function NotFoundPage({ pathContext }: INotFoundPageProps) {
+export default function NotFoundPage({
+  pathContext: { language },
+}: INotFoundPageProps) {
   const { t } = useTranslation();
   return (
-    <Layout pathContext={pathContext}>
+    <Layout language={language}>
       <SEO title="Not found" />
       <h1>404: Not Found</h1>
       <p>{t('404.message')}</p>

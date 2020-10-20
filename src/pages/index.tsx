@@ -3,9 +3,8 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
-import { PageContext } from 'gatsby-plugin-react-i18next/dist/types';
 
-import { HomeDataQuery } from '../../graphql-types';
+import { HomeDataQuery, SitePageContext } from '../../graphql-types';
 import { Abstract, Container, Layout, SEO } from '../components';
 
 const BannerContainer = styled.div`
@@ -18,15 +17,15 @@ const Title = styled.h1`
 
 interface IHomeProps {
   data: HomeDataQuery;
-  pathContext: PageContext;
+  pathContext: SitePageContext;
 }
 
-export default function Home({ data, pathContext }: IHomeProps) {
+export default function Home({ data, pathContext: { language } }: IHomeProps) {
   const { t } = useTranslation();
   const posts = data.allMarkdownRemark.nodes;
 
   return (
-    <Layout pathContext={pathContext}>
+    <Layout language={language}>
       <SEO title="Home" />
       <Container>
         <BannerContainer>
