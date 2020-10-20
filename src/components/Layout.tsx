@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import { useI18next } from 'gatsby-plugin-react-i18next';
 
 import GatsbyIcon from '../assets/gatsby.svg';
 import GithubIcon from '../assets/github.svg';
@@ -89,10 +90,10 @@ const PoweredBy = styled.span<ThemeProps>`
 
 interface ILayoutProps {
   children: React.ReactNode;
-  language?: string;
 }
 
-export default function Layout({ children, language = 'ko' }: ILayoutProps) {
+export default function Layout({ children }: ILayoutProps) {
+  const { language } = useI18next();
   const rootPath = language === 'ko' ? '/' : `/${language}/`;
   return (
     <RootProvider>

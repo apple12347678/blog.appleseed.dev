@@ -3,5 +3,7 @@
   "500.message": "Something went wrong... Sorry for the inconvenience.",
   "index.title": "Hello.",
   "index.introduction": "I am appleseed, a junior developer. I enjoy writing in React, TypeScript and Express.",
-  "index.nopost": "No posts currently available."
+  "index.nopost": "No posts currently available.",
+  "ccl.alt": "Creative Commons License",
+  "ccl.description": "This work is licensed under a <0>Creative Commons Attribution-ShareAlike 4.0 International License</0>."
 }

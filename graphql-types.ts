@@ -2408,6 +2408,8 @@ export type SitePageContextI18nResourcesEnTranslation = {
   index_title?: Maybe<Scalars['String']>;
   index_introduction?: Maybe<Scalars['String']>;
   index_nopost?: Maybe<Scalars['String']>;
+  ccl_alt?: Maybe<Scalars['String']>;
+  ccl_description?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextI18nResourcesEnTranslationFilterInput = {
@@ -2416,6 +2418,8 @@ export type SitePageContextI18nResourcesEnTranslationFilterInput = {
   index_title?: Maybe<StringQueryOperatorInput>;
   index_introduction?: Maybe<StringQueryOperatorInput>;
   index_nopost?: Maybe<StringQueryOperatorInput>;
+  ccl_alt?: Maybe<StringQueryOperatorInput>;
+  ccl_description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageContextI18nResourcesFilterInput = {
@@ -2437,6 +2441,8 @@ export type SitePageContextI18nResourcesKoTranslation = {
   index_title?: Maybe<Scalars['String']>;
   index_introduction?: Maybe<Scalars['String']>;
   index_nopost?: Maybe<Scalars['String']>;
+  ccl_alt?: Maybe<Scalars['String']>;
+  ccl_description?: Maybe<Scalars['String']>;
 };
 
 export type SitePageContextI18nResourcesKoTranslationFilterInput = {
@@ -2445,6 +2451,8 @@ export type SitePageContextI18nResourcesKoTranslationFilterInput = {
   index_title?: Maybe<StringQueryOperatorInput>;
   index_introduction?: Maybe<StringQueryOperatorInput>;
   index_nopost?: Maybe<StringQueryOperatorInput>;
+  ccl_alt?: Maybe<StringQueryOperatorInput>;
+  ccl_description?: Maybe<StringQueryOperatorInput>;
 };
 
 export type SitePageEdge = {
