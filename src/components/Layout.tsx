@@ -8,8 +8,9 @@ import GithubIcon from '../assets/github.svg';
 import ReactIcon from '../assets/react.svg';
 import TypescriptIcon from '../assets/typescript.svg';
 import { ThemeProps } from '../styles/theme';
+import RootProvider from './RootProvider';
 
-const Container = styled.div<ThemeProps>`
+const LayoutContainer = styled.div<ThemeProps>`
   padding: 1.5rem 2rem;
   color: ${(props) => props.theme.colors[100]};
   p {
@@ -95,8 +96,8 @@ export default function Layout({
 }: ILayoutProps) {
   const rootPath = language === 'ko' ? '/' : `/${language}/`;
   return (
-    <div>
-      <Container>
+    <RootProvider>
+      <LayoutContainer>
         <Header>
           <HomeLink>
             <Link to={rootPath}>appleseed.dev</Link>
@@ -144,7 +145,7 @@ export default function Layout({
             </a>
           </PoweredBy>
         </Footer>
-      </Container>
-    </div>
+      </LayoutContainer>
+    </RootProvider>
   );
 }
