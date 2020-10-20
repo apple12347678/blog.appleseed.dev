@@ -3,9 +3,10 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { PageContext } from 'gatsby-plugin-react-i18next/dist/types';
 
 import { HomeDataQuery } from '../../graphql-types';
-import { Abstract, Container, SEO } from '../components';
+import { Abstract, Container, Layout, SEO } from '../components';
 
 const BannerContainer = styled.div`
   padding: 60px 0;
@@ -18,14 +19,15 @@ const Title = styled.h1`
 interface IHomeProps {
   data: HomeDataQuery;
   location: globalThis.Location;
+  pathContext: PageContext;
 }
 
-export default function Home({ data, location }: IHomeProps) {
+export default function Home({ data, location, pathContext }: IHomeProps) {
   const { t } = useTranslation();
   const posts = data.allMarkdownRemark.nodes;
 
   return (
-    <>
+    <Layout pathContext={pathContext}>
       <SEO title="Home" />
       <Container>
         <BannerContainer>
@@ -48,7 +50,7 @@ export default function Home({ data, location }: IHomeProps) {
           ))
         )}
       </Container>
-    </>
+    </Layout>
   );
 }
 

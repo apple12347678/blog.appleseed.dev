@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
+import { PageContext } from 'gatsby-plugin-react-i18next/dist/types';
 
 import GatsbyIcon from '../assets/gatsby.svg';
 import GithubIcon from '../assets/github.svg';
@@ -33,14 +34,18 @@ const Header = styled.header`
   justify-content: space-between;
 `;
 
-const HomeLink = styled.span`
+const HomeLink = styled(Link)`
   font-size: 1.25rem;
   font-weight: 300;
-  a {
+  user-select: none;
+  display: inherit;
+  :hover {
     text-decoration: none;
-    user-select: none;
-    display: inherit;
   }
+`;
+
+const GithubLink = styled.a`
+  user-select: none;
 `;
 
 const SVGWrapper = styled.img<{ $sm?: boolean }>`
@@ -85,9 +90,7 @@ const PoweredBy = styled.span<ThemeProps>`
 
 interface ILayoutProps {
   children: React.ReactNode;
-  pathContext: {
-    language: string;
-  };
+  pathContext: PageContext;
 }
 
 export default function Layout({
@@ -99,17 +102,15 @@ export default function Layout({
     <RootProvider>
       <LayoutContainer>
         <Header>
-          <HomeLink>
-            <Link to={rootPath}>appleseed.dev</Link>
-          </HomeLink>
-          <a href="https://github.com/apple12347678">
+          <HomeLink to={rootPath}>appleseed.dev</HomeLink>
+          <GithubLink href="https://github.com/apple12347678">
             <SVGWrapper
               width="32"
               height="32"
               alt="github-icon"
               src={GithubIcon}
             />
-          </a>
+          </GithubLink>
         </Header>
         <main>{children}</main>
         <Footer>
