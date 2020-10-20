@@ -17,10 +17,9 @@ const Title = styled.h1`
 
 interface IHomeProps {
   data: HomeDataQuery;
-  location: globalThis.Location;
 }
 
-export default function Home({ data, location }: IHomeProps) {
+export default function Home({ data }: IHomeProps) {
   const { t } = useTranslation();
   const posts = data.allMarkdownRemark.nodes;
 

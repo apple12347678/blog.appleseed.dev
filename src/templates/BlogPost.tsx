@@ -17,13 +17,9 @@ const BlogPostBody = styled.section`
 
 interface IBlogPostTemplateProps {
   data: BlogPostBySlugQuery;
-  location: globalThis.Location;
 }
 
-export default function BlogPostTemplate({
-  data,
-  location,
-}: IBlogPostTemplateProps) {
+export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
   const post = data.markdownRemark;
   if (!post || !post.html) {
     return <Error />;
