@@ -77,6 +77,7 @@ module.exports = {
               footnoteBackRefInnerTextStartPosition: 'front',
             },
           },
+          'gatsby-remark-katex',
         ],
       },
     },

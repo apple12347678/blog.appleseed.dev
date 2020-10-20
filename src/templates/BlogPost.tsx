@@ -2,9 +2,10 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
+import { PageContext } from 'gatsby-plugin-react-i18next/dist/types';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
-import { Container, Error, SEO, TagContainer } from '../components';
+import { Container, Error, Layout, SEO, TagContainer } from '../components';
 
 const BlogPostTitle = styled.h1`
   font-size: 3rem;
@@ -17,16 +18,20 @@ const BlogPostBody = styled.section`
 
 interface IBlogPostTemplateProps {
   data: BlogPostBySlugQuery;
+  pathContext: PageContext;
 }
 
-export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
+export default function BlogPostTemplate({
+  data,
+  pathContext,
+}: IBlogPostTemplateProps) {
   const post = data.markdownRemark;
   if (!post || !post.html) {
     return <Error />;
   }
   const { tags } = post.frontmatter;
   return (
-    <>
+    <Layout pathContext={pathContext}>
       <SEO title={post.frontmatter.title} />
       <Container>
         <article itemScope itemType="http://schema.org/Article">
@@ -46,7 +51,7 @@ export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}
         </article>
       </Container>
-    </>
+    </Layout>
   );
 }
 

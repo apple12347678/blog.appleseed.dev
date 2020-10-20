@@ -280,5 +280,17 @@ This paragraph has some `code` in it.
 
     ![Alt Text](https://placehold.it/200x50 "Image Title")
 
+An inline equation $e^{i\pi}-1=0$ goes inline.
+
+    An inline equation $e^{i\pi}-1=0$ goes inline.
+
+$$
+i\hbar\frac{\partial}{\partial t}|\psi(t)\rang=\hat{H}|\psi(t)\rang
+$$
+
+    $$
+    i\hbar\frac{\partial}{\partial t}|\psi(t)\rang=\hat{H}|\psi(t)\rang
+    $$
+
 [^1]: Here is the footnote!
 [^2]: Here is another footnote!
