@@ -1,0 +1,7 @@
+{
+  "404.message": "존재하지 않는 페이지입니다. 홈으로 돌아가 원하는 페이지를 찾아보세요.",
+  "500.message": "무언가 잘못되었습니다... 불편을 끼쳐 죄송합니다.",
+  "index.title": "안녕하세요.",
+  "index.introduction": "저는 주니어 개발자 appleseed입니다. React, TypeScript와 Express로 무언가를 만드는 것을 좋아합니다.",
+  "index.nopost": "현재 열람 가능한 글이 없습니다."
+}

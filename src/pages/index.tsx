@@ -2,9 +2,10 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
-import { Abstract, Container, Layout, SEO } from '../components';
+import { Abstract, Container, SEO } from '../components';
 
 const BannerContainer = styled.div`
   padding: 60px 0;
@@ -20,18 +21,19 @@ interface IHomeProps {
 }
 
 export default function Home({ data, location }: IHomeProps) {
+  const { t } = useTranslation();
   const posts = data.allMarkdownRemark.nodes;
 
   return (
-    <Layout location={location}>
+    <>
       <SEO title="Home" />
       <Container>
         <BannerContainer>
-          <Title>Hello</Title>
-          <p>This is appleseed&#39;s dev blog.</p>
+          <Title>{t('index.title')}</Title>
+          <p>{t('index.introduction')}</p>
         </BannerContainer>
         {posts.length === 0 ? (
-          <p>No posts currently available.</p>
+          <p>{t('index.nopost')}</p>
         ) : (
           posts.map((post) => (
             <Abstract
@@ -46,19 +48,22 @@ export default function Home({ data, location }: IHomeProps) {
           ))
         )}
       </Container>
-    </Layout>
+    </>
   );
 }
 
 export const pageQuery = graphql`
-  query HomeData {
+  query HomeData($language: String!) {
     site {
       siteMetadata {
         title
       }
     }
     allMarkdownRemark(
-      filter: { frontmatter: { test: { ne: true } } }
+      filter: {
+        frontmatter: { test: { ne: true } }
+        fields: { lang: { eq: $language } }
+      }
       sort: { fields: [frontmatter___date], order: DESC }
     ) {
       nodes {

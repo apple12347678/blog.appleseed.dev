@@ -36,7 +36,7 @@ export default function Abstract({
   return (
     <AbstractContainer>
       <h2>
-        <Title to={`/post${slug}`}>{title}</Title>
+        <Title to={slug}>{title}</Title>
       </h2>
       <p>{date}</p>
       <p>{description}</p>

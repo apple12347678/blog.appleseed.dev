@@ -27,6 +27,28 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-react-i18next`,
+      options: {
+        path: `${__dirname}/content/locale`,
+        languages: ['en', 'ko'],
+        defaultLanguage: 'ko',
+        i18nextOptions: {
+          interpolation: {
+            escapeValue: false,
+          },
+          keySeparator: false,
+          nsSeparator: false,
+        },
+        redirect: false,
+        pages: [
+          {
+            matchPath: '/:lang?/post/:slug',
+            getLanguageFromPath: true,
+          },
+        ],
+      },
+    },
+    {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
@@ -80,7 +102,7 @@ module.exports = {
               return allMarkdownRemark.edges.map((edge) => {
                 return Object.assign({}, edge.node.frontmatter, {
                   description: edge.node.excerpt,
-                  url: `${site.siteMetadata.site_url}/post${edge.node.fields.slug}`,
+                  url: `${site.siteMetadata.site_url}${edge.node.fields.slug}`,
                   custom_elements: [{ 'content:encoded': edge.node.html }],
                 });
               });

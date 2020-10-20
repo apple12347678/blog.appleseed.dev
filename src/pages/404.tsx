@@ -1,17 +1,16 @@
 import React from 'react';
 
-import { Layout, SEO } from '../components';
+import { useTranslation } from 'gatsby-plugin-react-i18next';
 
-interface INotFoundPageProps {
-  location: globalThis.Location;
-}
+import { SEO } from '../components';
 
-export default function NotFoundPage({ location }: INotFoundPageProps) {
+export default function NotFoundPage() {
+  const { t } = useTranslation();
   return (
-    <Layout location={location}>
+    <>
       <SEO title="Not found" />
       <h1>404: Not Found</h1>
-      <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-    </Layout>
+      <p>{t('404.message')}</p>
+    </>
   );
 }

@@ -41,6 +41,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const posts = result.data.allMarkdownRemark.nodes;
 
+  /* TODO get different pages for different lang */
   if (posts.length > 0) {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id;
@@ -48,7 +49,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         index === posts.length - 1 ? null : posts[index + 1].id;
 
       createPage({
-        path: `/post${post.fields.slug}`,
+        path: post.fields.slug,
         component: BlogPost,
         context: {
           id: post.id,
@@ -61,15 +62,22 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 };
 
 exports.onCreateNode = ({ node, actions, getNode, getNodesByType }) => {
-  const { createNode, createNodeField, createParentChildLink } = actions;
+  const { createNode, createNodeField } = actions;
 
   if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode });
+    const filePath = createFilePath({ node, getNode });
+
+    const match = filePath.match(/^\/(.*)\/(ko|en)\/$/);
 
     createNodeField({
-      name: `slug`,
+      name: 'slug',
       node,
-      value,
+      value: `${match[2] === 'ko' ? '' : `/${match[2]}`}/post/${match[1]}/`,
+    });
+    createNodeField({
+      name: 'lang',
+      node,
+      value: match[2],
     });
 
     const tagNodes = getNodesByType(`Tag`);
@@ -124,6 +132,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Fields {
       slug: String!
+      lang: String!
     }
 
     type Tag implements Node {

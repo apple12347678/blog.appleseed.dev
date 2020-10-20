@@ -1,16 +1,13 @@
 import React from 'react';
 
-import { Global } from '@emotion/core';
 import styled from '@emotion/styled';
-import { ThemeProvider } from 'emotion-theming';
 import { Link } from 'gatsby';
 
 import GatsbyIcon from '../assets/gatsby.svg';
 import GithubIcon from '../assets/github.svg';
 import ReactIcon from '../assets/react.svg';
 import TypescriptIcon from '../assets/typescript.svg';
-import { globalStyle } from '../styles/globalStyle';
-import { theme, ThemeProps } from '../styles/theme';
+import { ThemeProps } from '../styles/theme';
 
 const Container = styled.div<ThemeProps>`
   padding: 1.5rem 2rem;
@@ -86,67 +83,68 @@ const PoweredBy = styled.span<ThemeProps>`
 `;
 
 interface ILayoutProps {
-  location: globalThis.Location;
   children: React.ReactNode;
+  pathContext: {
+    language: string;
+  };
 }
 
-export default function Layout({ location, children }: ILayoutProps) {
-  const rootPath = `${__PATH_PREFIX__}/`;
-  const isRootPath = location.pathname === rootPath;
+export default function Layout({
+  children,
+  pathContext: { language },
+}: ILayoutProps) {
+  const rootPath = language === 'ko' ? '/' : `/${language}/`;
   return (
-    <div data-is-root-path={isRootPath}>
-      <Global styles={globalStyle} />
-      <ThemeProvider theme={theme}>
-        <Container>
-          <Header>
-            <HomeLink>
-              <Link to="/">appleseed.dev</Link>
-            </HomeLink>
-            <a href="https://github.com/apple12347678">
+    <div>
+      <Container>
+        <Header>
+          <HomeLink>
+            <Link to={rootPath}>appleseed.dev</Link>
+          </HomeLink>
+          <a href="https://github.com/apple12347678">
+            <SVGWrapper
+              width="32"
+              height="32"
+              alt="github-icon"
+              src={GithubIcon}
+            />
+          </a>
+        </Header>
+        <main>{children}</main>
+        <Footer>
+          <Copyright>© 2020 by appleseed</Copyright>
+          <PoweredBy>
+            Powered by
+            <a href="https://reactjs.org/">
               <SVGWrapper
-                width="32"
-                height="32"
-                alt="github-icon"
-                src={GithubIcon}
+                width="20"
+                height="20"
+                alt="react-icon"
+                $sm
+                src={ReactIcon}
               />
             </a>
-          </Header>
-          <main>{children}</main>
-          <Footer>
-            <Copyright>© 2020 by appleseed</Copyright>
-            <PoweredBy>
-              Powered by
-              <a href="https://reactjs.org/">
-                <SVGWrapper
-                  width="20"
-                  height="20"
-                  alt="react-icon"
-                  $sm
-                  src={ReactIcon}
-                />
-              </a>
-              <a href="https://www.typescriptlang.org/">
-                <SVGWrapper
-                  width="20"
-                  height="20"
-                  alt="typescript-icon"
-                  $sm
-                  src={TypescriptIcon}
-                />
-              </a>
-              <a href="https://www.gatsbyjs.com/">
-                <SVGWrapper
-                  width="20"
-                  height="20"
-                  alt="gatsby-icon"
-                  $sm
-                  src={GatsbyIcon}
-                />
-              </a>
-            </PoweredBy>
-          </Footer>
-        </Container>
-      </ThemeProvider>
+            <a href="https://www.typescriptlang.org/">
+              <SVGWrapper
+                width="20"
+                height="20"
+                alt="typescript-icon"
+                $sm
+                src={TypescriptIcon}
+              />
+            </a>
+            <a href="https://www.gatsbyjs.com/">
+              <SVGWrapper
+                width="20"
+                height="20"
+                alt="gatsby-icon"
+                $sm
+                src={GatsbyIcon}
+              />
+            </a>
+          </PoweredBy>
+        </Footer>
+      </Container>
     </div>
   );
 }

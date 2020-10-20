@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
-import { Container, Error, Layout, SEO, TagContainer } from '../components';
+import { Container, Error, SEO, TagContainer } from '../components';
 
 const BlogPostTitle = styled.h1`
   font-size: 3rem;
@@ -30,7 +30,7 @@ export default function BlogPostTemplate({
   }
   const { tags } = post.frontmatter;
   return (
-    <Layout location={location}>
+    <>
       <SEO title={post.frontmatter.title} />
       <Container>
         <article itemScope itemType="http://schema.org/Article">
@@ -50,7 +50,7 @@ export default function BlogPostTemplate({
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}
         </article>
       </Container>
-    </Layout>
+    </>
   );
 }
 

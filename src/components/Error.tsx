@@ -1,10 +1,13 @@
 import React from 'react';
 
+import { useTranslation } from 'gatsby-plugin-react-i18next';
+
 export default function Error() {
+  const { t } = useTranslation();
   return (
     <div>
       <h1>Oops! :(</h1>
-      <p>Something went wrong... Sorry for the inconvenience.</p>
+      <p>{t('500.message')}</p>
     </div>
   );
 }
