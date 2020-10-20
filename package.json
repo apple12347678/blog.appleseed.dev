@@ -11,10 +11,10 @@
     "start": "yarn dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "check": "yarn tsc && yarn lint && yarn format",
     "lint": "eslint --cache src",
     "lint:fix": "yarn lint --fix",
-    "create": "TS_NODE_PROJECT=tsconfig.script.json yarn ts-node script/create-article.ts"
+    "create-article": "TS_NODE_PROJECT=tsconfig.script.json yarn ts-node script/create-article.ts"
   },
   "dependencies": {
     "@babel/core": "^7",

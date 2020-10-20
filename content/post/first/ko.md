@@ -1,6 +1,6 @@
 ---
 title: 첫 글
-date: '2020-10-18T09:12:57.395Z'
+date: 2020-10-18T09:12:57.395Z
 description: '첫 번째 글'
 tags:
   - log

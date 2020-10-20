@@ -1,6 +1,6 @@
 ---
 title: My first article
-date: '2020-10-18T09:12:57.395Z'
+date: 2020-10-18T09:12:57.395Z
 description: 'my first article'
 tags:
   - log

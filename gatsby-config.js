@@ -27,7 +27,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-react-i18next`,
+      resolve: 'gatsby-plugin-react-i18next',
       options: {
         path: `${__dirname}/content/locale`,
         languages: ['en', 'ko'],

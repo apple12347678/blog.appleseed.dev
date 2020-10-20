@@ -4,22 +4,18 @@ import path from 'path';
 import yaml from 'yaml';
 import yargs from 'yargs/yargs';
 
-const { slug, title, description, tag: argvTag } = yargs(process.argv).argv as {
+const { slug, title, description = '', tag: argvTag, lang = 'ko' } = yargs(
+  process.argv,
+).argv as {
   slug?: string;
   title?: string;
   description?: string;
   tag?: string | string[];
+  lang?: string;
 };
 
-if (
-  !_.isString(slug) ||
-  !_.isString(title) ||
-  !_.isString(description) ||
-  _.isUndefined(argvTag)
-) {
-  console.log(
-    'Usage: create --slug [slug] --title [title] --description [description] --tag [tag] ...',
-  );
+if (!_.isString(slug) || !_.isString(title) || _.isUndefined(argvTag)) {
+  console.log('Usage: create --slug [slug] --title [title] --tag [tag] ...');
   process.exit(1);
 }
 
@@ -32,7 +28,7 @@ const newPostDirPath = path.resolve(
   slug,
 );
 
-const newPostMarkdownPath = path.resolve(newPostDirPath, 'index.md');
+const newPostMarkdownPath = path.resolve(newPostDirPath, `${lang}.md`);
 
 const frontmatter = yaml.stringify({
   title,

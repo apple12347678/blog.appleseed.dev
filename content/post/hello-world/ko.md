@@ -1,7 +1,7 @@
 ---
 title: Font test
-date: '2015-05-01T22:12:03.284Z'
-description: 'Document for font testing'
+date: 2015-05-01T22:12:03.284Z
+description: Document for font testing
 tags:
   - hello-world
   - test
