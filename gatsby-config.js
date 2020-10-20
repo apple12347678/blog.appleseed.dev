@@ -46,6 +46,15 @@ module.exports = {
           'gatsby-remark-prismjs',
           'gatsby-remark-copy-linked-files',
           'gatsby-remark-smartypants',
+          {
+            resolve: 'gatsby-remark-footnotes',
+            options: {
+              footnoteBackRefPreviousElementDisplay: 'inline',
+              footnoteBackRefDisplay: 'inline',
+              footnoteBackRefInnerText: '^',
+              footnoteBackRefInnerTextStartPosition: 'front',
+            },
+          },
         ],
       },
     },

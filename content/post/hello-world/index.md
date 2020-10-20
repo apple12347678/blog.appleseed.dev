@@ -55,6 +55,18 @@ const saltyDuckEgg = 'chinese preserved food product';
 
 [View raw (TEST.md)](https://raw.github.com/adamschwartz/github-markdown-kitchen-sink/master/README.md)
 
+Footnote test[^1]
+
+another one[^2]
+
+    Footnote test[^1]
+
+    another one[^2]
+
+    [^1]: Here is the footnote!
+
+    [^2]: Here is another footnote!
+
 This is a paragraph.
 
     This is a paragraph.
@@ -267,3 +279,6 @@ This paragraph has some `code` in it.
 ![Alt Text](https://placehold.it/200x50 'Image Title')
 
     ![Alt Text](https://placehold.it/200x50 "Image Title")
+
+[^1]: Here is the footnote!
+[^2]: Here is another footnote!
