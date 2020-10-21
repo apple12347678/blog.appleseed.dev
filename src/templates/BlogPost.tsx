@@ -2,6 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
+import { useTranslation } from 'react-i18next';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
 import {
@@ -12,10 +13,18 @@ import {
   SEO,
   TagContainer,
 } from '../components';
+import { ThemeProps } from '../styles/theme';
 
 const BlogPostTitle = styled.h1`
   font-size: 3rem;
   font-weight: 700;
+`;
+
+const DescriptionText = styled.span<ThemeProps>`
+  display: block;
+  font-size: 0.9rem;
+  color: ${(props) => props.theme.colors[300]};
+  margin: 4px 0;
 `;
 
 const BlogPostBody = styled.section`
@@ -27,6 +36,7 @@ interface IBlogPostTemplateProps {
 }
 
 export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
+  const { t } = useTranslation();
   const post = data.markdownRemark;
   if (!post) {
     return (
@@ -46,7 +56,10 @@ export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
               {post.frontmatter.title}
             </BlogPostTitle>
             <p>{post.frontmatter.description}</p>
-            <p>{post.frontmatter.date}</p>
+            <DescriptionText>{post.frontmatter.date}</DescriptionText>
+            <DescriptionText>
+              {t('abstract.timeToRead', { timeToRead: post.timeToRead })}
+            </DescriptionText>
             <TagContainer tags={tags} />
           </header>
           {/* eslint-disable react/no-danger,@typescript-eslint/naming-convention */}
@@ -76,6 +89,7 @@ export const pageQuery = graphql`
     markdownRemark(id: { eq: $id }) {
       id
       excerpt(pruneLength: 160)
+      timeToRead
       html
       frontmatter {
         title
