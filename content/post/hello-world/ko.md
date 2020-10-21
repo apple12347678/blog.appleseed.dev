@@ -5,7 +5,7 @@ description: Document for font testing
 tags:
   - hello-world
   - test
-test: true
+draft: true
 ---
 
 This is my first post on my new fake blog! How exciting!

@@ -14,7 +14,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         allMarkdownRemark(
           ${
             process.env.NODE_ENV === 'production'
-              ? 'filter: {frontmatter: {test: {ne: true}}}'
+              ? 'filter: {frontmatter: {draft: {ne: true}}}'
               : ''
           }
           sort: { fields: [frontmatter___date], order: ASC }
@@ -124,14 +124,15 @@ exports.createSchemaCustomization = ({ actions }) => {
       frontmatter: Frontmatter!
       fields: Fields!
       html: String!
+      timeToRead: Int!
     }
 
     type Frontmatter {
       title: String!
-      description: String!
+      description: String
       date: Date! @dateformat
       tags: [String!]!
-      test: Boolean
+      draft: Boolean
     }
 
     type Fields {

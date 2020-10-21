@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { graphql, useStaticQuery } from 'gatsby';
-import { Helmet } from 'react-helmet';
+import { Helmet, useI18next } from 'gatsby-plugin-react-i18next';
 
 import { SeoDataQuery } from '../../graphql-types';
 
@@ -12,11 +12,10 @@ type TMetaProps = React.DetailedHTMLProps<
 
 interface ISEOProps {
   title: string;
-  lang?: string;
   meta?: TMetaProps[];
 }
 
-export default function SEO({ title, lang = 'en', meta = [] }: ISEOProps) {
+export default function SEO({ title, meta = [] }: ISEOProps) {
   const { site }: SeoDataQuery = useStaticQuery(
     graphql`
       query SEOData {
@@ -29,6 +28,7 @@ export default function SEO({ title, lang = 'en', meta = [] }: ISEOProps) {
       }
     `,
   );
+  const { language: lang } = useI18next();
 
   const metaDescription = site?.siteMetadata?.description || '';
   const defaultTitle: string = site?.siteMetadata?.title || 'Title';

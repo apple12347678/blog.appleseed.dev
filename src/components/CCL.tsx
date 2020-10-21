@@ -2,7 +2,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Trans, useTranslation } from 'gatsby-plugin-react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 
 import { ThemeProps } from '../styles/theme';
 

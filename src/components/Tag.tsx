@@ -4,6 +4,8 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
+import { useTagHue } from '../hooks/useTagHue';
+
 interface IColorProps {
   $hue: number;
 }
@@ -48,8 +50,7 @@ interface ITagProps {
 }
 
 function Tag({ name, to }: ITagProps) {
-  const hue =
-    Array.from(name).reduce((acc, cur) => acc + cur.charCodeAt(0), 0) % 360;
+  const hue = useTagHue(name);
   if (to) {
     return (
       <TagRootLink $hue={hue} to={to}>

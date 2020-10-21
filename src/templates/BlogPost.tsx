@@ -28,8 +28,12 @@ interface IBlogPostTemplateProps {
 
 export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
   const post = data.markdownRemark;
-  if (!post || !post.html) {
-    return <Error />;
+  if (!post) {
+    return (
+      <Layout>
+        <Error />
+      </Layout>
+    );
   }
   const { tags } = post.frontmatter;
   return (
@@ -47,7 +51,7 @@ export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
           </header>
           {/* eslint-disable react/no-danger,@typescript-eslint/naming-convention */}
           <BlogPostBody
-            dangerouslySetInnerHTML={{ __html: post.html }}
+            dangerouslySetInnerHTML={{ __html: post.html || '' }}
             itemProp="articleBody"
           />
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}

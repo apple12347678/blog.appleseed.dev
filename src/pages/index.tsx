@@ -2,7 +2,7 @@ import React from 'react';
 
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
-import { useTranslation } from 'gatsby-plugin-react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
 import { Abstract, Container, Layout, SEO } from '../components';
@@ -42,6 +42,7 @@ export default function Home({ data }: IHomeProps) {
               description={post.frontmatter.description}
               excerpt={post.excerpt || undefined}
               date={post.frontmatter.date}
+              timeToRead={post.timeToRead || 0}
               tags={post.frontmatter.tags}
             />
           ))
@@ -60,7 +61,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       filter: {
-        frontmatter: { test: { ne: true } }
+        frontmatter: { draft: { ne: true } }
         fields: { lang: { eq: $language } }
       }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -76,6 +77,7 @@ export const pageQuery = graphql`
           description
           tags
         }
+        timeToRead
       }
     }
   }

@@ -4,6 +4,7 @@
   "index.title": "Hello.",
   "index.introduction": "I am appleseed, a junior developer. I enjoy writing in React, TypeScript and Express.",
   "index.nopost": "No posts currently available.",
+  "abstract.timeToRead": "{{ timeToRead }} min read",
   "ccl.alt": "Creative Commons License",
   "ccl.description": "This work is licensed under a <0>Creative Commons Attribution-ShareAlike 4.0 International License</0>."
 }

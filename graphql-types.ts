@@ -719,10 +719,11 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___frontmatter___description'
   | 'childMarkdownRemark___frontmatter___date'
   | 'childMarkdownRemark___frontmatter___tags'
-  | 'childMarkdownRemark___frontmatter___test'
+  | 'childMarkdownRemark___frontmatter___draft'
   | 'childMarkdownRemark___fields___slug'
   | 'childMarkdownRemark___fields___lang'
   | 'childMarkdownRemark___html'
+  | 'childMarkdownRemark___timeToRead'
   | 'childMarkdownRemark___excerpt'
   | 'childMarkdownRemark___rawMarkdownBody'
   | 'childMarkdownRemark___fileAbsolutePath'
@@ -732,7 +733,6 @@ export type FileFieldsEnum =
   | 'childMarkdownRemark___headings___id'
   | 'childMarkdownRemark___headings___value'
   | 'childMarkdownRemark___headings___depth'
-  | 'childMarkdownRemark___timeToRead'
   | 'childMarkdownRemark___tableOfContents'
   | 'childMarkdownRemark___wordCount___paragraphs'
   | 'childMarkdownRemark___wordCount___sentences'
@@ -845,10 +845,10 @@ export type FloatQueryOperatorInput = {
 
 export type Frontmatter = {
   title: Scalars['String'];
-  description: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
   date: Scalars['Date'];
   tags: Array<Scalars['String']>;
-  test?: Maybe<Scalars['Boolean']>;
+  draft?: Maybe<Scalars['Boolean']>;
 };
 
 
@@ -864,7 +864,7 @@ export type FrontmatterFilterInput = {
   description?: Maybe<StringQueryOperatorInput>;
   date?: Maybe<DateQueryOperatorInput>;
   tags?: Maybe<StringQueryOperatorInput>;
-  test?: Maybe<BooleanQueryOperatorInput>;
+  draft?: Maybe<BooleanQueryOperatorInput>;
 };
 
 export type ImageCropFocus = 
@@ -1441,13 +1441,13 @@ export type MarkdownRemark = Node & {
   frontmatter: Frontmatter;
   fields: Fields;
   html?: Maybe<Scalars['String']>;
+  timeToRead?: Maybe<Scalars['Int']>;
   excerpt?: Maybe<Scalars['String']>;
   rawMarkdownBody?: Maybe<Scalars['String']>;
   fileAbsolutePath?: Maybe<Scalars['String']>;
   htmlAst?: Maybe<Scalars['JSON']>;
   excerptAst?: Maybe<Scalars['JSON']>;
   headings?: Maybe<Array<Maybe<MarkdownHeading>>>;
-  timeToRead?: Maybe<Scalars['Int']>;
   tableOfContents?: Maybe<Scalars['String']>;
   wordCount?: Maybe<MarkdownWordCount>;
   parent?: Maybe<Node>;
@@ -1514,10 +1514,11 @@ export type MarkdownRemarkFieldsEnum =
   | 'frontmatter___description'
   | 'frontmatter___date'
   | 'frontmatter___tags'
-  | 'frontmatter___test'
+  | 'frontmatter___draft'
   | 'fields___slug'
   | 'fields___lang'
   | 'html'
+  | 'timeToRead'
   | 'excerpt'
   | 'rawMarkdownBody'
   | 'fileAbsolutePath'
@@ -1527,7 +1528,6 @@ export type MarkdownRemarkFieldsEnum =
   | 'headings___id'
   | 'headings___value'
   | 'headings___depth'
-  | 'timeToRead'
   | 'tableOfContents'
   | 'wordCount___paragraphs'
   | 'wordCount___sentences'
@@ -1623,13 +1623,13 @@ export type MarkdownRemarkFilterInput = {
   frontmatter?: Maybe<FrontmatterFilterInput>;
   fields?: Maybe<FieldsFilterInput>;
   html?: Maybe<StringQueryOperatorInput>;
+  timeToRead?: Maybe<IntQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
   htmlAst?: Maybe<JsonQueryOperatorInput>;
   excerptAst?: Maybe<JsonQueryOperatorInput>;
   headings?: Maybe<MarkdownHeadingFilterListInput>;
-  timeToRead?: Maybe<IntQueryOperatorInput>;
   tableOfContents?: Maybe<StringQueryOperatorInput>;
   wordCount?: Maybe<MarkdownWordCountFilterInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -1888,13 +1888,13 @@ export type QueryMarkdownRemarkArgs = {
   frontmatter?: Maybe<FrontmatterFilterInput>;
   fields?: Maybe<FieldsFilterInput>;
   html?: Maybe<StringQueryOperatorInput>;
+  timeToRead?: Maybe<IntQueryOperatorInput>;
   excerpt?: Maybe<StringQueryOperatorInput>;
   rawMarkdownBody?: Maybe<StringQueryOperatorInput>;
   fileAbsolutePath?: Maybe<StringQueryOperatorInput>;
   htmlAst?: Maybe<JsonQueryOperatorInput>;
   excerptAst?: Maybe<JsonQueryOperatorInput>;
   headings?: Maybe<MarkdownHeadingFilterListInput>;
-  timeToRead?: Maybe<IntQueryOperatorInput>;
   tableOfContents?: Maybe<StringQueryOperatorInput>;
   wordCount?: Maybe<MarkdownWordCountFilterInput>;
   parent?: Maybe<NodeFilterInput>;
@@ -2408,6 +2408,7 @@ export type SitePageContextI18nResourcesEnTranslation = {
   index_title?: Maybe<Scalars['String']>;
   index_introduction?: Maybe<Scalars['String']>;
   index_nopost?: Maybe<Scalars['String']>;
+  abstract_timeToRead?: Maybe<Scalars['String']>;
   ccl_alt?: Maybe<Scalars['String']>;
   ccl_description?: Maybe<Scalars['String']>;
 };
@@ -2418,6 +2419,7 @@ export type SitePageContextI18nResourcesEnTranslationFilterInput = {
   index_title?: Maybe<StringQueryOperatorInput>;
   index_introduction?: Maybe<StringQueryOperatorInput>;
   index_nopost?: Maybe<StringQueryOperatorInput>;
+  abstract_timeToRead?: Maybe<StringQueryOperatorInput>;
   ccl_alt?: Maybe<StringQueryOperatorInput>;
   ccl_description?: Maybe<StringQueryOperatorInput>;
 };
@@ -2441,6 +2443,7 @@ export type SitePageContextI18nResourcesKoTranslation = {
   index_title?: Maybe<Scalars['String']>;
   index_introduction?: Maybe<Scalars['String']>;
   index_nopost?: Maybe<Scalars['String']>;
+  abstract_timeToRead?: Maybe<Scalars['String']>;
   ccl_alt?: Maybe<Scalars['String']>;
   ccl_description?: Maybe<Scalars['String']>;
 };
@@ -2451,6 +2454,7 @@ export type SitePageContextI18nResourcesKoTranslationFilterInput = {
   index_title?: Maybe<StringQueryOperatorInput>;
   index_introduction?: Maybe<StringQueryOperatorInput>;
   index_nopost?: Maybe<StringQueryOperatorInput>;
+  abstract_timeToRead?: Maybe<StringQueryOperatorInput>;
   ccl_alt?: Maybe<StringQueryOperatorInput>;
   ccl_description?: Maybe<StringQueryOperatorInput>;
 };
@@ -3399,7 +3403,7 @@ export type HomeDataQueryVariables = Exact<{
 
 
 export type HomeDataQuery = { site?: Maybe<{ siteMetadata?: Maybe<Pick<SiteSiteMetadata, 'title'>> }>, allMarkdownRemark: { nodes: Array<(
-      Pick<MarkdownRemark, 'excerpt'>
+      Pick<MarkdownRemark, 'excerpt' | 'timeToRead'>
       & { fields: Pick<Fields, 'slug'>, frontmatter: Pick<Frontmatter, 'date' | 'title' | 'description' | 'tags'> }
     )> } };
 

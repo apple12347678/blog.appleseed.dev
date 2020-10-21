@@ -4,6 +4,7 @@
   "index.title": "안녕하세요.",
   "index.introduction": "저는 주니어 개발자 appleseed입니다. React, TypeScript와 Express로 무언가를 만드는 것을 좋아합니다.",
   "index.nopost": "현재 열람 가능한 글이 없습니다.",
+  "abstract.timeToRead": "{{ timeToRead }}분",
   "ccl.alt": "크리에이티브 커먼즈 라이선스",
   "ccl.description": "이 저작물은 <0>크리에이티브 커먼즈 저작자표시-동일조건변경허락 4.0 국제 라이선스</0>에 따라 이용할 수 있습니다."
 }
