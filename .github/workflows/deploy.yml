@@ -59,7 +59,4 @@ jobs:
         run: aws s3 sync ./public s3://blog.appleseed.dev
       - name: Purge CDN
         run: |
-          aws cloudfront create-invalidation --distribution-id E13WRTNEH0QI9H --paths \
-          / "/404*" "/post*" "/icons*" \
-          /404.html /browserconfig.xml /chunk-map.json /favicon.ico /index.html \
-          /manifest.json /manifest.webmanifest /robots.txt /rss.xml
+          aws cloudfront create-invalidation --distribution-id E13WRTNEH0QI9H --paths /*
