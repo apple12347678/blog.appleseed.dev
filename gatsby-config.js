@@ -184,6 +184,7 @@ module.exports = {
     },
     'gatsby-plugin-emotion',
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-layout',
     {
       resolve: 'gatsby-plugin-google-analytics',
       options: {

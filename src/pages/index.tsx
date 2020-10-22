@@ -5,7 +5,7 @@ import { graphql } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
-import { Abstract, Container, Layout, SEO } from '../components';
+import { Abstract, Container, SEO } from '../components';
 
 const BannerContainer = styled.div`
   padding: 60px 0;
@@ -24,7 +24,7 @@ export default function Home({ data }: IHomeProps) {
   const posts = data.allMarkdownRemark.nodes;
 
   return (
-    <Layout>
+    <>
       <SEO title="Home" />
       <Container>
         <BannerContainer>
@@ -48,7 +48,7 @@ export default function Home({ data }: IHomeProps) {
           ))
         )}
       </Container>
-    </Layout>
+    </>
   );
 }
 

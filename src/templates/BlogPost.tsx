@@ -5,14 +5,7 @@ import { graphql } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
-import {
-  CCL,
-  Container,
-  Error,
-  Layout,
-  SEO,
-  TagContainer,
-} from '../components';
+import { CCL, Container, Error, SEO, TagContainer } from '../components';
 import { ThemeProps } from '../styles/theme';
 
 const BlogPostTitle = styled.h1<ThemeProps>`
@@ -42,15 +35,11 @@ export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
   const { t } = useTranslation();
   const post = data.markdownRemark;
   if (!post) {
-    return (
-      <Layout>
-        <Error />
-      </Layout>
-    );
+    return <Error />;
   }
   const { tags } = post.frontmatter;
   return (
-    <Layout>
+    <>
       <SEO title={post.frontmatter.title} />
       <Container>
         <article itemScope itemType="http://schema.org/Article">
@@ -74,7 +63,7 @@ export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
         </article>
         <CCL />
       </Container>
-    </Layout>
+    </>
   );
 }
 
