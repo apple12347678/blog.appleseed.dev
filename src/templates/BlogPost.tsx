@@ -15,9 +15,12 @@ import {
 } from '../components';
 import { ThemeProps } from '../styles/theme';
 
-const BlogPostTitle = styled.h1`
+const BlogPostTitle = styled.h1<ThemeProps>`
   font-size: 3rem;
   font-weight: 700;
+  @media (max-width: ${(props) => props.theme.breakpoints.xs}px) {
+    font-size: 2.5rem;
+  }
 `;
 
 const DescriptionText = styled.span<ThemeProps>`
