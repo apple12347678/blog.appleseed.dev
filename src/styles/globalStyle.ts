@@ -80,11 +80,11 @@ export const getGlobalStyle = (theme: Theme) => css`
     border-left: 4px solid ${theme.colors[200]};
     & > * {
       color: ${theme.colors[400]};
-      p {
-        font-size: 1.15rem;
-        line-height: 1.75;
-        font-style: italic;
-      }
+    }
+    & > p {
+      font-size: 1.15rem;
+      line-height: 1.75;
+      font-style: italic;
     }
   }
 
