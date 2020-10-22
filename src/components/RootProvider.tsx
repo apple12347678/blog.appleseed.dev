@@ -1,20 +1,30 @@
 import React from 'react';
 
 import { Global } from '@emotion/core';
-import { ThemeProvider } from 'emotion-theming';
+import { ThemeProvider, useTheme } from 'emotion-theming';
 
-import { globalStyle } from '../styles/globalStyle';
-import { theme } from '../styles/theme';
+import { useGlobalStyle } from '../hooks';
+import { Theme, theme as defaultTheme } from '../styles/theme';
 
 interface IRootProviderProps {
   children: React.ReactNode;
 }
 
-export default function RootProvider({ children }: IRootProviderProps) {
+function ThemedRootProvider({ children }: IRootProviderProps) {
+  const theme = useTheme<Theme>();
+  const globalStyle = useGlobalStyle(theme);
   return (
     <>
       <Global styles={globalStyle} />
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      {children}
     </>
+  );
+}
+
+export default function RootProvider({ children }: IRootProviderProps) {
+  return (
+    <ThemeProvider theme={defaultTheme}>
+      <ThemedRootProvider>{children}</ThemedRootProvider>
+    </ThemeProvider>
   );
 }

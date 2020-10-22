@@ -11,22 +11,8 @@ import TypescriptIcon from '../assets/typescript.svg';
 import { ThemeProps } from '../styles/theme';
 import RootProvider from './RootProvider';
 
-const LayoutContainer = styled.div<ThemeProps>`
+const LayoutContainer = styled.div`
   padding: 1.5rem 2rem;
-  color: ${(props) => props.theme.colors[100]};
-  p {
-    color: ${(props) => props.theme.colors[300]};
-  }
-  blockquote {
-    border-left: 4px solid ${(props) => props.theme.colors[300]};
-  }
-  blockquote > * {
-    color: ${(props) => props.theme.colors[400]};
-  }
-  *::selection {
-    color: ${(props) => props.theme.colors[900]};
-    background-color: ${(props) => props.theme.colors[100]};
-  }
 `;
 
 const Header = styled.header`
@@ -34,11 +20,12 @@ const Header = styled.header`
   justify-content: space-between;
 `;
 
-const HomeLink = styled(Link)`
+const HomeLink = styled(Link)<ThemeProps>`
   font-size: 1.25rem;
   font-weight: 300;
   user-select: none;
   display: inherit;
+  color: ${(props) => props.theme.colors[100]};
   :hover {
     text-decoration: none;
   }

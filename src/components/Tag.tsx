@@ -4,7 +4,7 @@ import { css } from '@emotion/core';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
-import { useTagHue } from '../hooks/useTagHue';
+import { useTagHue } from '../hooks';
 
 interface IColorProps {
   $hue: number;

@@ -1,6 +1,8 @@
 import { css } from '@emotion/core';
 
-export const globalStyle = css`
+import { Theme } from './theme';
+
+export const getGlobalStyle = (theme: Theme) => css`
   body {
     margin: 0;
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -8,14 +10,20 @@ export const globalStyle = css`
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
       'Noto Color Emoji';
     line-height: 1.75;
+    color: ${theme.colors[100]};
   }
 
   main {
     display: block;
   }
 
+  *::selection {
+    color: ${theme.colors[900]};
+    background-color: ${theme.colors[100]};
+  }
+
   a {
-    color: inherit;
+    color: ${theme.colors[400]};
     text-decoration: none;
   }
 
@@ -61,6 +69,7 @@ export const globalStyle = css`
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
     font-size: 1rem;
+    color: ${theme.colors[200]};
   }
 
   blockquote {
@@ -68,12 +77,15 @@ export const globalStyle = css`
     padding-left: 24px;
     margin-block-start: 1em;
     margin-block-end: 1em;
-  }
-
-  blockquote > p {
-    font-size: 1.15rem;
-    line-height: 1.75;
-    font-style: italic;
+    border-left: 4px solid ${theme.colors[200]};
+    & > * {
+      color: ${theme.colors[400]};
+      p {
+        font-size: 1.15rem;
+        line-height: 1.75;
+        font-style: italic;
+      }
+    }
   }
 
   li {

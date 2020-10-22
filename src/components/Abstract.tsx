@@ -12,7 +12,8 @@ const AbstractContainer = styled.div`
   display: block;
 `;
 
-const Title = styled(Link)`
+const Title = styled(Link)<ThemeProps>`
+  color: ${(props) => props.theme.colors[100]};
   &:hover {
     text-decoration: none;
   }
