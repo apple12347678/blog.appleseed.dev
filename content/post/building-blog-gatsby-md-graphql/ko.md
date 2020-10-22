@@ -79,25 +79,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const posts = result.data.allMarkdownRemark.nodes;
 
   posts.forEach((post, index) => {
-    const previousPostId = index === 0 ? null : posts[index - 1].id;
-    const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id;
-
     createPage({
       path: post.fields.slug,
       component: BlogPost,
       context: {
         id: post.id,
-        previousPostId,
-        nextPostId,
       },
     });
   });
 };
 ```
 
-BlogPost.tsx에는 context가 전달된다. 이 context는 default export된 컴포넌트의 props로도 접근 가능하지만 pageQuery라는 이름으로 named export된 GQL 쿼리로도 전달되며, pageQuery의 실행 결과가 props의 data를 구성한다. 이는 생성되는 모든 page들이 동일하다. context로 전달된 id, previousPostId, nextPostId는 각각 해당 포스트, 이전 포스트, 다음 포스트의 GQL ID 값이며 pageQuery는 이 값들을 받아 실제 페이지에 필요한 HTML, 제목, 날짜 등의 정보를 가져와 BlogPost 컴포넌트에 전달하여 최종적으로 하나의 포스트 페이지가 생성된다.
+BlogPost.tsx에는 context가 전달된다. 이 context는 default export된 컴포넌트의 props로도 접근 가능하지만 pageQuery라는 이름으로 named export된 GQL 쿼리로도 전달되며, pageQuery의 실행 결과가 props의 data를 구성한다. 이는 생성되는 모든 page들이 동일하다. context로 전달된 id는 해당 포스트의 GQL ID 값이며 pageQuery는 이 값을 받아 실제 페이지에 필요한 HTML, 제목, 날짜 등의 정보를 가져와 BlogPost 컴포넌트에 전달하여 최종적으로 하나의 포스트 페이지가 생성된다.
 
-onCreateNode에서 페이지당 실제로 생성될 경로를 나타내는 slug를 만드는 코드도 필요한데, 여기에서는 생략했다. 대부분의 starter들이 비슷한 문맥으로 기능을 구현하고 있으니 참고하는 것을 추천한다.
+onCreateNode에서 페이지당 실제로 생성될 경로를 나타내는 slug를 만드는 코드, 이전 페이지와 다음 페이지 데이터를 넘겨주는 코드도 필요한데, 여기에서는 생략했다. 대부분의 starter들이 비슷한 문맥으로 기능을 구현하고 있으니 적극적으로 참고하는 것을 추천한다.
 
 # 기능 추가하기
 
