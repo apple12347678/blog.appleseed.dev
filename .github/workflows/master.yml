@@ -24,11 +24,11 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Lint
-        run: yarn lint
+        run: yarn lint:strict
       - name: Type Check
         run: yarn tsc
       - name: Format
-        run: yarn format
+        run: yarn format:check
   deploy:
     needs: test
     runs-on: ubuntu-latest

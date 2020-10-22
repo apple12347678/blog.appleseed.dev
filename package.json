@@ -4,16 +4,32 @@
   "description": "A personal blog",
   "version": "0.1.0",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/apple12347678/blog.appleseed.dev"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsc && lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,md}": "prettier --write",
+    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
+  },
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "yarn dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "overhaul": "yarn tsc && yarn lint && yarn format",
+    "tsc": "tsc",
     "lint": "eslint --cache src",
+    "lint:strict": "yarn lint --max-warnings=0",
     "lint:fix": "yarn lint --fix",
+    "format": "prettier \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "format:check": "yarn format --check",
+    "format:write": "yarn format --write",
+    "refactor": "yarn tsc && yarn lint:fix && yarn format:write",
     "create-article": "TS_NODE_PROJECT=tsconfig.script.json yarn ts-node script/create-article.ts",
     "clean-start": "yarn clean && yarn build && yarn serve"
   },
@@ -80,21 +96,5 @@
     "ts-node": "^9.0.0",
     "yaml": "^1.10.0",
     "yargs": "^16.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc && lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md}": "prettier --write",
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
   }
 }
