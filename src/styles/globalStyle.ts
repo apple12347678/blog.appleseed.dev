@@ -3,14 +3,21 @@ import { css } from '@emotion/core';
 import { Theme } from './theme';
 
 export const getGlobalStyle = (theme: Theme) => css`
-  body {
-    margin: 0;
+  html {
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
       'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
       'Noto Color Emoji';
+    font-size: 16px;
     line-height: 1.75;
     color: ${theme.colors[100]};
+    @media (max-width: ${theme.breakpoints.xs}px) {
+      font-size: 14px;
+    }
+  }
+
+  body {
+    margin: 0;
   }
 
   main {
@@ -103,6 +110,11 @@ export const getGlobalStyle = (theme: Theme) => css`
       border-bottom: 1px solid;
       border-color: inherit;
     }
+  }
+
+  code[class*='language-'],
+  pre[class*='language-'] {
+    font-size: 0.9rem;
   }
 
   .gatsby-resp-image-image {

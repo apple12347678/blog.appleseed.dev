@@ -31,9 +31,10 @@ interface IBlogPostTemplateProps {
   data: BlogPostBySlugQuery;
 }
 
-export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
+export default function BlogPostTemplate({
+  data: { markdownRemark: post },
+}: IBlogPostTemplateProps) {
   const { t } = useTranslation();
-  const post = data.markdownRemark;
   if (!post) {
     return <Error />;
   }
@@ -48,9 +49,10 @@ export default function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
               {post.frontmatter.title}
             </BlogPostTitle>
             <p>{post.frontmatter.description}</p>
-            <DescriptionText>{post.frontmatter.date}</DescriptionText>
             <DescriptionText>
-              {t('abstract.timeToRead', { timeToRead: post.timeToRead })}
+              {`${post.frontmatter.date} · ${t('abstract.timeToRead', {
+                timeToRead: post.timeToRead,
+              })}`}
             </DescriptionText>
             <TagContainer tags={tags} />
           </header>

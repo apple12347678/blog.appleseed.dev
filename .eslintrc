@@ -79,6 +79,7 @@
         "format": ["UPPER_CASE"]
       }
     ],
+    "@typescript-eslint/restrict-template-expressions": "off",
     "import/extensions": "off",
     "import/order": "off",
     "import/prefer-default-export": "off",

@@ -51,10 +51,9 @@ export default function Abstract({
       <h2>
         <Title to={slug}>{title}</Title>
       </h2>
-      <DescriptionText>{date}</DescriptionText>
       {description && <DescriptionText>{description}</DescriptionText>}
       <DescriptionText>
-        {t('abstract.timeToRead', { timeToRead })}
+        {`${date} · ${t('abstract.timeToRead', { timeToRead })}`}
       </DescriptionText>
       <p>{excerpt}</p>
       <TagContainer tags={tags} />
