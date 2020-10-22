@@ -15,8 +15,7 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          restore-keys: ${{ runner.os }}-yarn-
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -58,5 +57,4 @@ jobs:
       - name: Deploy
         run: aws s3 sync ./public s3://blog.appleseed.dev
       - name: Purge CDN
-        run: |
-          aws cloudfront create-invalidation --distribution-id E13WRTNEH0QI9H --paths /*
+        run: aws cloudfront create-invalidation --distribution-id E13WRTNEH0QI9H --paths /*
