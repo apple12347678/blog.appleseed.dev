@@ -112,9 +112,30 @@ export const getGlobalStyle = (theme: Theme) => css`
     }
   }
 
-  code[class*='language-'],
+  pre {
+    border-radius: 4px;
+  }
+
+  .gatsby-highlight {
+    background-color: #1e1e1e;
+    border-radius: 0.3em;
+    margin: 0.5em 0;
+    padding: 1em;
+    overflow: auto;
+  }
+
+  .gatsby-highlight pre[class*='language-'].line-numbers {
+    padding: 0;
+    padding-left: 2.8em;
+    overflow: initial;
+  }
+
+  .line-numbers .line-numbers-rows {
+    border-right: none;
+  }
+
   pre[class*='language-'] {
-    font-size: 0.9rem;
+    padding: 0;
   }
 
   .gatsby-resp-image-image {
