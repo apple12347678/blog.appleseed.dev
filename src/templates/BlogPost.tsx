@@ -31,7 +31,7 @@ const DescriptionText = styled.span<ThemeProps>`
 `;
 
 const BlogPostBody = styled.section`
-  margin: 4rem 0;
+  margin: 4rem 0 2rem;
 `;
 
 interface IBlogPostTemplateProps {
