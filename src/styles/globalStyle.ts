@@ -116,6 +116,10 @@ export const getGlobalStyle = (theme: Theme) => css`
     border-radius: 4px;
   }
 
+  pre[class*='language-'] {
+    padding: 0;
+  }
+
   .gatsby-highlight {
     background-color: #1e1e1e;
     border-radius: 0.3em;
@@ -134,11 +138,31 @@ export const getGlobalStyle = (theme: Theme) => css`
     border-right: none;
   }
 
-  pre[class*='language-'] {
-    padding: 0;
-  }
-
   .gatsby-resp-image-image {
     margin: 1rem 0;
+  }
+
+  .footnotes {
+    ol {
+      counter-reset: item;
+      padding: 0;
+      /* padding-left: 20px; */
+    }
+    li {
+      display: block;
+      font-size: 0.9rem;
+      margin-block-start: 0.4em;
+      margin-block-end: 0.4em;
+    }
+    li:before {
+      content: counter(item) '. ';
+      counter-increment: item;
+      width: 2em;
+      display: inline-block;
+    }
+  }
+
+  .footnote-paragraph {
+    font-size: 0.9rem;
   }
 `;

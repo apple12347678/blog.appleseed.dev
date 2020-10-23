@@ -5,7 +5,14 @@ import { graphql } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
-import { CCL, Container, Error, SEO, TagContainer } from '../components';
+import {
+  CCL,
+  Container,
+  Error,
+  SEO,
+  TagContainer,
+  Utterances,
+} from '../components';
 import { ThemeProps } from '../styles/theme';
 
 const BlogPostTitle = styled.h1<ThemeProps>`
@@ -24,7 +31,7 @@ const DescriptionText = styled.span<ThemeProps>`
 `;
 
 const BlogPostBody = styled.section`
-  margin: 4rem 0;
+  margin: 4rem 0 2rem;
 `;
 
 interface IBlogPostTemplateProps {
@@ -64,6 +71,7 @@ export default function BlogPostTemplate({
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}
         </article>
         <CCL />
+        <Utterances />
       </Container>
     </>
   );

@@ -6,7 +6,8 @@ import { Trans, useTranslation } from 'react-i18next';
 
 import { ThemeProps } from '../styles/theme';
 
-const License = styled.span<ThemeProps>`
+const License = styled.div<ThemeProps>`
+  margin-bottom: 2rem;
   font-size: 0.85rem;
   color: ${(props) => props.theme.colors[500]};
 `;
