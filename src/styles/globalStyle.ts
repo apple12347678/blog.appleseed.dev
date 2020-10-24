@@ -134,6 +134,11 @@ export const getGlobalStyle = (theme: Theme) => css`
     overflow: initial;
   }
 
+  .gatsby-highlight-code-line {
+    display: block;
+    background-color: #323c49;
+  }
+
   .line-numbers .line-numbers-rows {
     border-right: none;
   }
