@@ -50,6 +50,10 @@ export default function SEO({ title, meta = [] }: ISEOProps) {
       property: 'og:type',
       content: 'website',
     },
+    {
+      property: 'og:image',
+      content: '/static/banner.png',
+    },
   ];
 
   return (
