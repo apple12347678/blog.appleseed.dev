@@ -1,5 +1,6 @@
 import { css } from '@emotion/core';
 
+import { prismCodeHighlightCss, prismVscodeCss } from './prism';
 import { Theme } from './theme';
 
 export const getGlobalStyle = (theme: Theme) => css`
@@ -116,37 +117,6 @@ export const getGlobalStyle = (theme: Theme) => css`
     border-radius: 4px;
   }
 
-  pre[class*='language-'] {
-    padding: 0;
-  }
-
-  .gatsby-highlight {
-    background-color: #1e1e1e;
-    border-radius: 0.3em;
-    margin: 0.5em 0;
-    padding: 1em;
-    overflow: auto;
-  }
-
-  .gatsby-highlight pre[class*='language-'].line-numbers {
-    padding: 0;
-    padding-left: 2.8em;
-    overflow: initial;
-  }
-
-  .gatsby-highlight-code-line {
-    display: block;
-    background-color: #323c49;
-  }
-
-  .line-numbers .line-numbers-rows {
-    border-right: none;
-  }
-
-  .gatsby-resp-image-image {
-    margin: 1rem 0;
-  }
-
   .footnotes {
     ol {
       counter-reset: item;
@@ -170,4 +140,12 @@ export const getGlobalStyle = (theme: Theme) => css`
   .footnote-paragraph {
     font-size: 0.9rem;
   }
+
+  .gatsby-resp-image-image {
+    margin: 1rem 0;
+  }
+
+  ${prismVscodeCss}
+
+  ${prismCodeHighlightCss}
 `;

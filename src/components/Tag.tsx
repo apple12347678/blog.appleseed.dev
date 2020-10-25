@@ -16,9 +16,10 @@ const tagRootCss = (props: IColorProps) => css`
   background-color: hsl(${props.$hue}, 40%, 90%);
   border-radius: 12px;
   display: inline-block;
+  transition: opacity 0.5s ease;
   &:hover {
     text-decoration: none;
-    opacity: 0.9;
+    opacity: 0.8;
   }
 `;
 
