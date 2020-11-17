@@ -2355,18 +2355,18 @@ export type SitePageConnectionGroupArgs = {
 
 export type SitePageContext = {
   language: Scalars['String'];
+  i18n?: Maybe<SitePageContextI18n>;
   id?: Maybe<Scalars['String']>;
   previousPostId?: Maybe<Scalars['String']>;
   nextPostId?: Maybe<Scalars['String']>;
-  i18n?: Maybe<SitePageContextI18n>;
 };
 
 export type SitePageContextFilterInput = {
   language?: Maybe<StringQueryOperatorInput>;
+  i18n?: Maybe<SitePageContextI18nFilterInput>;
   id?: Maybe<StringQueryOperatorInput>;
   previousPostId?: Maybe<StringQueryOperatorInput>;
   nextPostId?: Maybe<StringQueryOperatorInput>;
-  i18n?: Maybe<SitePageContextI18nFilterInput>;
 };
 
 export type SitePageContextI18n = {
@@ -2473,15 +2473,15 @@ export type SitePageFieldsEnum =
   | 'matchPath'
   | 'isCreatedByStatefulCreatePages'
   | 'context___language'
-  | 'context___id'
-  | 'context___previousPostId'
-  | 'context___nextPostId'
   | 'context___i18n___language'
   | 'context___i18n___languages'
   | 'context___i18n___defaultLanguage'
   | 'context___i18n___routed'
   | 'context___i18n___originalPath'
   | 'context___i18n___path'
+  | 'context___id'
+  | 'context___previousPostId'
+  | 'context___nextPostId'
   | 'pluginCreator___id'
   | 'pluginCreator___parent___id'
   | 'pluginCreator___parent___parent___id'
