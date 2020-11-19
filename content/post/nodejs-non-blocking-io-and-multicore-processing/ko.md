@@ -16,7 +16,7 @@ tags:
 
 ## IO in general
 
-IO는 Input/Output의 줄임말이다. 하지만 컴퓨터과학에서 그 의미는 범위에 따라 아예 다른 작업을 뜻할 수도 있다. 어떤 데이터가 CPU에서 처리되기 위해서는 자신이 있는 위치부터 메모리 계층의 최상위에 있는 레지스터까지 전달되어야 한다. 몇몇 데이터 소스는 "실행을 심각하게 늦추지 않는 선에서" 레지스터까지의 데이터 전달을 보장한다. 하지만 대부분의 데이터 소스는 데이터를 요청했을 때 일정 시간 안에 데이터를 받을 수 있을 거라는 보장이 없기 때문에, 프로그램은 어떤 방식으로든 데이터를 받기까지 "실행이 심각하게 늦춰진다고 느껴질 만큼" 대기하는 시간이 생긴다. 현대의 컴퓨터 구조에서 전자는 **메모리**, 즉 RAM과 그 상위 메모리 계층을 가리키고 후자는 **디스크** - 하드디스크 및 SSD - 와 **네트워크**를 통한 데이터 교환을 의미한다. 어떤 IO가 blocking하는지, non-blocking하는지는 주로 후자에 해당하는 디스크 혹은 네트워크로부터 데이터를 가져오려고 할 때 프로그래밍 언어 혹은 런타임이 데이터가 도착하기를 대기하는지에 따라 구분된다.
+IO는 Input/Output의 줄임말이다. 하지만 컴퓨터과학에서 그 의미는 범위에 따라 아예 다른 작업을 뜻할 수도 있다. 어떤 데이터가 CPU에서 처리되기 위해서는 자신이 있는 위치부터 메모리 계층의 최상위에 있는 레지스터까지 전달되어야 한다. 몇몇 데이터 소스는 _실행을 심각하게 늦추지 않는 선에서_ 레지스터까지의 데이터 전달을 보장한다. 하지만 대부분의 데이터 소스는 데이터를 요청했을 때 일정 시간 안에 데이터를 받을 수 있을 거라는 보장이 없기 때문에, 프로그램은 어떤 방식으로든 데이터를 받기까지 _실행이 심각하게 늦춰진다고 느껴질 만큼_ 대기하는 시간이 생긴다. 현대의 컴퓨터 구조에서 전자는 **메모리**, 즉 RAM과 그 상위 메모리 계층을 가리키고 후자는 **디스크** - 하드디스크 및 SSD - 와 **네트워크**를 통한 데이터 교환을 의미한다. 어떤 IO가 blocking하는지, non-blocking하는지는 주로 후자에 해당하는 디스크 혹은 네트워크로부터 데이터를 가져오려고 할 때 프로그래밍 언어 혹은 런타임이 데이터가 도착하기를 대기하는지에 따라 구분된다.
 
 ### Blocking IO
 
@@ -32,11 +32,15 @@ Non-blocking IO를 달성하고 나면 위에서 지적된 코어가 놀고 있�
 
 비슷한 목적을 달성하기 위해 최근 여러 프로그래밍 언어 및 런타임이 "가벼운" 비동기 로직의 작성을 지원하기 위해 노력했다. 최신 파이썬 또한 [yield](https://docs.python.org/3/reference/expressions.html#yieldexpr)를 이용하여 generator를 작성하거나 async/await을 이용한 [코루틴](https://docs.python.org/ko/3/library/asyncio-task.html) 작성이 가능하며, Go의 [goroutine](https://tour.golang.org/concurrency/1)은 가벼운 비동기 작업들을 작성할 수 있게 하는 Go 언어의 특장점들 중 하나이다. Rust도 async/await 키워드를 [최근 언어의 스펙에 포함했다](https://areweasyncyet.rs/). 이외에도 Java, C++ 등 여러 언어들이 가벼운 비동기 로직을 지원하기 위해 언어를 확장하고 있다.
 
-### Async != Non-Blocking
+### Sync != Blocking, Async != Non-Blocking
+
+Async와 non-blocking이 주로 짝지어지고 sync와 blocking이 주로 짝지어지지만 이 둘은 완전히 동일한 개념은 아니다. Sync하면서 non-blocking할 수도 있고 async하면서 blocking할 수도 있지만, 비효율적이고 부자연스럽기 때문에 그렇게 쓰이지 않을 뿐이다. 두 개념이 분명히 다르고, 아주 일부 상황에서 이러한 패턴들이 쓰일 수 있다는 것만 짚고 넘어가자. 특히 polling은 ajax 만으로 실시간 소통을 달성하기 위해서 쓰일 정도로 흔한 패턴이다.
+
+![Sync & Async, Blocking & Non-Blocking](./figure1.gif)[^4]
 
 ## Event Loop
 
-Event loop은 V8 런타임의 스펙이며, 이는 JS 코드가 어떻게 외부의 자극에 반응하는지를 정의한다. 또한 가벼운 비동기 로직을 작성할 수 있게 하는 원천이기도 하다. 동기 스크립트의 실행이 끝나고 나면 모든 비동기 작업들은 일종의 "큐"에 들어가며, 작업들이 끝나는 순서대로 큐에서 튀어나온다. 파일 시스템에서 특정 파일을 읽어오는 일, 네트워크 요청 이후 응답을 기다리는 일, 혹은 반대로 새로운 네트워크 연결 요청이 들어오기를 기다리는 일, DB에 쿼리를 보내고 응답을 기다리는 일들 등 IO 작업들이 대부분 요청이 끝나면 큐에 들어간다. Event loop는 이 시점부터 계속 순회하며 큐에 있는 작업들 중 완료된 작업들이 있는지 확인하고, 만약 있다면 여기에 물려있는 콜백들을 실행한다. 일반적인 콜백, Promise의 then 혹은 catch 콜백, await 혹은 yield 이후의 스크립트들이나 이벤트를 구독하고 있는 모든 함수들이 여기에 해당된다.
+Event loop은 V8 런타임의 스펙이며, 이는 JS 코드가 어떻게 외부의 자극에 반응하는지를 정의한다. 또한 가벼운 비동기 로직을 작성할 수 있게 하는 원천이기도 하다. 동기 스크립트의 실행이 끝나고 나면 모든 비동기 작업들은 일종의 *큐*에 들어가며, 작업들이 끝나는 순서대로 큐에서 튀어나온다. 파일 시스템에서 특정 파일을 읽어오는 일, 네트워크 요청 이후 응답을 기다리는 일, 혹은 반대로 새로운 네트워크 연결 요청이 들어오기를 기다리는 일, DB에 쿼리를 보내고 응답을 기다리는 일들 등 IO 작업들이 대부분 요청이 끝나면 큐에 들어간다. Event loop는 이 시점부터 계속 순회하며 큐에 있는 작업들 중 완료된 작업들이 있는지 확인하고, 만약 있다면 여기에 물려있는 콜백들을 실행한다. 일반적인 콜백, Promise의 then 혹은 catch 콜백, await 혹은 yield 이후의 스크립트들이나 이벤트를 구독하고 있는 모든 함수들이 여기에 해당된다.
 
 프론트엔드에서 이벤트의 원천은 사용자의 입력 또는 AJAX를 통한 네트워크 요청으로 한정된다. [libuv](https://github.com/libuv/libuv) 라이브러리는 일반적인 비동기 IO 작업을 추상화한 인터페이스를 제공하고, NodeJS는 libuv와 V8의 event loop을 성공적으로 결합하여 JS 스크립트로 좀 더 낮은 레벨의 네트워크 작업이나 디스크에 접근하는 작업 등 일반적인 IO 작업들을 가능하게 했다.
 
@@ -44,7 +48,7 @@ Event loop은 V8 런타임의 스펙이며, 이는 JS 코드가 어떻게 외부
 
 하지만 Non-blocking IO를 활용하는 코드를 짜는 것은 쉽지 않다. 위에서 언급한 장점들이 모두 발휘되기 위해서는 작성하는 코드 또한 non-blocking하게 작성되어야 한다. NodeJS의 모듈들은 같은 API를 async한 것과 sync한 것 두 종류를 모두 제공하는데, sync한 종류를 사용하는 것은 event loop의 사이클을 막고 해당 작업들이 끝날 때까지 대기한다. `fs` 모듈의 `readFile`과 `readFileSync`같은 메소드들이 그러하다. `readFile`은 파일을 읽는 동안 대기하지 않고 다음 작업을 수행한 후, 파일 읽기가 끝나면 콜백 작업을 수행한다. 반면 `readFileSync`는 파일 읽기가 끝날 때까지 NodeJS의 모든 작업을 중단시키고 기다린다.
 
-많은 계산을 요구하는 작업들또한 event loop을 막을 수 있다. 프로그램이 계산을 해야지 뭘 한다는 말인가? 라고 할 수 있지만, JS는 애초에 그런 작업들을 하기 위해 만들어진 언어가 아니고 NodeJS또한 그러하다. NodeJS 또한 그런 작업들을 JS가 아닌 다른 언어로 작성된 모듈이나 스크립트를 실행하는 것으로 대체하기를 권장한다. **NodeJS는 오로지 IO에만 집중해야 한다.** 암호, 복호 연산이나 행렬 연산 같은 CPU를 많이 사용하는 작업들은 JS 스크립트로 작성되었을 때 아주 비효율적이며, 더욱 치명적인 점은 이 계산이 이루어지는 동안 event loop가 대기한다는 것이다. 직접 다른 언어를 사용해서 그런 작업들을 구현하고 이를 비동기적으로 NodeJS와 연걸할 수도 있겠으나, 대부분은 이미 npm에 구현체가 올라와 있을 것이다. argon2 암호화 함수의 구현체인 [node-argon2](https://www.npmjs.com/package/argon2)는 C++로 구현되어 있으며, 비동기적으로 실행되어 event loop을 막지 않는다.
+많은 계산을 요구하는 작업들또한 event loop을 막을 수 있다. 프로그램이 계산을 해야지 뭘 한다는 말인가? 라고 할 수 있지만, JS는 애초에 그런 작업들을 하기 위해 만들어진 언어가 아니고 NodeJS또한 그러하다. NodeJS 또한 그런 작업들을 JS가 아닌 다른 언어로 작성된 모듈이나 스크립트를 실행하는 것으로 대체하기를 권장한다. **NodeJS는 오로지 IO에만 집중해야 한다.** 암호, 복호 연산이나 행렬 연산 같은 CPU를 많이 사용하는 작업들은 JS 스크립트로 작성되었을 때 아주 비효율적이며, 더욱 치명적인 점은 이 계산이 이루어지는 동안 event loop가 대기한다는 것이다. 직접 다른 언어를 사용해서 그런 작업들을 구현하고 이를 비동기적으로 NodeJS와 연결할 수도 있겠으나, 대부분은 이미 npm에 구현체가 올라와 있을 것이다. argon2 암호화 함수의 구현체인 [node-argon2](https://www.npmjs.com/package/argon2)는 C++로 구현되어 있으며, 비동기적으로 실행되어 event loop을 막지 않는다.
 
 # Multi core NodeJS
 
@@ -60,7 +64,7 @@ Event loop은 V8 런타임의 스펙이며, 이는 JS 코드가 어떻게 외부
 
 **스레드**는 프로세스 내에서 작업을 쪼개는 단위이다. 프로세스와의 가장 큰 차이점은 스레드가 몇개든 OS 입장에서는 그 스레드들을 들고 있는 프로세스의 자원만 관리하면 된다는 것이다. 여기에서 프로세스와 스레드의 차이점이 대부분 파생된다. 먼저, 한 프로세스가 관리하는 여러 스레드는 같은 메모리 공간을 공유할 수 있다. 각 프로세스가 서로의 메모리 공간에 간섭하지 못하는 것과 대조적이다. 그리고 프로세스의 교체는 *문맥 교환(context switch)*을 동반한다. 문맥 교환은 프로세스를 교체해야 할 시점에 중지될 프로세스의 레지스터와 스택 등 임시 데이터들을 메모리로 옮기고 재개될 프로세스의 레지스터와 스택은 다시 채워넣는 작업 등을 의미하는데, 시스템 전체적으로 봤을 때 자원을 상당히 소모하는 작업이다. 멀티스레딩은 문맥 교환 없이도 구동이 가능하기 때문에, 같은 작업들을 프로세스로 분할하는 것보다 스레드로 분할하는 것이 더 가볍다.
 
-멀티프로세싱과 멀티스레딩 모두 하나 이상의 CPU 코어를 활용하여 작업을 처리할 수 있다. 대개 여러 프로세스의 동시 실행은 OS의 역할로 위임되고, 한 프로세스 내의 스레드들의 동시 실행은 대부분 코드를 실행하는 런타임의 역할이나 OS가 맡기도 한다. Java의 JVM, Go의 런타임, POSIX 운영체제들의 pthread API 등이 스레드의 관리를 맡는다. NodeJS나 Python[^4] 인터프리터 런타임들은 이러한 의미의 멀티스레딩을 달성할 수 없다.
+멀티프로세싱과 멀티스레딩 모두 하나 이상의 CPU 코어를 활용하여 작업을 처리할 수 있다. 프로세스들의 동시 실행은 OS의 역할로 위임되고, 한 프로세스 내의 스레드들의 동시 실행은 코드를 실행하는 런타임 또는 OS가 맡는다. Java의 JVM, Go의 런타임, POSIX 운영체제들의 pthread API 등이 스레드의 관리를 맡는다. NodeJS나 Python[^5] 인터프리터 런타임들은 이러한 의미의 멀티스레딩을 달성할 수 없다.
 
 ## Multiprocessing Single-Threaded Programs
 
@@ -81,7 +85,7 @@ app.get('/', (req, res) => {
 
 두 개의 fork된 프로세스가 같은 입력을 핸들하는 상황이라면, `a`의 값은 두 프로세스에서 다를 것이다. 만약 프로세스 0이 해당 API에 대해서 4번 응답하고 그 후 프로세스 1이 1번 응답했다면, 사용자는 다섯 번째 요청에 대해서 1이라는 이상한 답을 받을 것이다.
 
-따라서 이러한 방식으로 작성되는 서버는 **stateless**해야 한다. 즉, 지역 변수 등의 상태를 가져서는 안된다. Express를 포함한 NodeJS 프레임워크들은 콜백 패턴과 함수형 프로그래밍을 권장하기 때문에 let 대신 const를 쓰고 메모리 누수에 주의하는 등의 몇 가지 규칙만 엄수한다면 서버를 stateless하게 작성하는 것은 어렵지 않다. 만약 사용자의 입력에 따라 일관적이고 영구적인 기록을 남겨야 한다면, 별도의 DB를 두자. 만약 세션 등의 중요하진 않지만 임시로 들고 있어야 할 데이터를 처리해야 한다면, 지역변수 대신 Redis 등의 인메모리 DB를 활용하자. DB와의 커뮤니케이션은 아주 일반적인 IO 작업의 일종이고, NodeJS가 특화된 분야이기도 하다.
+따라서 이러한 방식으로 작성되는 서버는 **stateless**해야 한다. 즉, mutable한 변수 등 사용쟈의 입력 외의 상태를 가져서는 안된다. Express를 포함한 NodeJS 프레임워크들은 콜백 패턴과 함수형 프로그래밍을 권장하기 때문에 let 대신 const를 쓰고 메모리 누수에 주의하는 등의 몇 가지 규칙만 엄수한다면 서버를 stateless하게 작성하는 것은 어렵지 않다. 만약 사용자의 입력에 따라 일관적이고 영구적인 기록을 남겨야 한다면, 별도의 DB를 두자. 만약 세션 등의 중요하진 않지만 임시로 들고 있어야 할 데이터를 처리해야 한다면, 지역변수 대신 Redis 등의 인메모리 DB를 활용하자. DB와의 커뮤니케이션은 아주 일반적인 IO 작업의 일종이고, NodeJS가 특화된 분야이기도 하다.
 
 ## NodeJS Cluster Mode
 
@@ -93,7 +97,7 @@ NodeJS는 멀티프로세싱을 통한 멀티코어의 활용을 적극 권장�
 
 ## Scale-out w/ NodeJS
 
-PM2를 이용해 한 머신 안에서의 코어 활용도를 최대화하는 데까지 성공했다면, 같은 작업을 더욱 병렬화 하는 것은 쉽다. 전통적인 방식으로는 여러 머신에서 PM2를 돌리면서 전방의 로드밸런서로 각 머신들로 요청을 분산시키는 방법이 가능하겠다. 지금의 나라면 Docker와 Kubernetes 등을 적극 활용하여 클라우드 내에서 활용할 수 있는 CPU 코어의 수를 최적화하고 로드의 크기에 따라 auto scale할 수 있도록 작업하고 싶다.
+PM2를 이용해 한 머신 안에서의 코어 활용도를 최대화하는 데까지 성공했다면, 같은 작업을 더욱 병렬화 하는 것은 쉽다. 전통적인 방식으로는 여러 머신에서 PM2를 돌리면서 전방의 로드밸런서로 각 머신들로 요청을 분산시키는 방법이 가능하겠다. 지금의 나라면 Docker와 Kubernetes 등을 적극 활용하여 클라우드 내에서 활용할 수 있는 CPU 코어의 수를 최적화하고 로드의 크기에 따라 auto scale 할 수 있도록 작업하고 싶다.
 
 # Summary
 
@@ -105,9 +109,11 @@ NodeJS의 non-blocking IO가 가지는 장점과, 태생적인 단점인 싱글�
 - ["The Node.js Event Loop, Timers, and `process.nextTick()`", NodeJS](https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/)
 - ["Cluster", NodeJS](https://nodejs.org/api/cluster.html)
 - ["Sync vs Async, Blocking vs Non-Blocking", codemcd@velog](https://velog.io/@codemcd/Sync-VS-Async-Blocking-VS-Non-Blocking-sak6d01fhx)
+- ["Boost application performance using asynchronous I/O", IBM](https://developer.ibm.com/technologies/linux/articles/l-async/)
 - ["Production best practices", Express(a NodeJS library)](http://expressjs.com/en/advanced/best-practice-performance.html)
 
 [^1]: ["Why CPU Clock Speed Isn’t Increasing", maketecheasier.com, Mar 2018](https://www.maketecheasier.com/why-cpu-clock-speed-isnt-increasing/)
 [^2]: Non-blocking IO라는 개념이 NodeJS에서 처음 나온 것은 아니다. 다만 JS 엔진 V8이 제공하는 이벤트 드리븐 환경에 영향을 받아 JS로 IO를 비동기적으로 처리해보자는 아이디어에서 출발하여 NodeJS가 탄생하게 되었다.
 [^3]: 하이퍼스레딩, SMT(simultaneous multi-threading) 등으로 불리며 전술한 idle 상태의 코어에 대기중인 작업을 실행하도록 요청하여 물리 코어 하나가 여러 개의 논리 코어의 역할을 할 수 있도록 설계하는 기술이다. 인텔이 처음 소개하였고 최근 보안 논란이 불거진 기술이기도 하다.
-[^4]: Python 인터프리터는 [GIL](https://en.wikipedia.org/wiki/Global_interpreter_lock)이라는 태생적인 한계로 멀티스레딩을 달성하지 못한다.
+[^4]: 이미지 출처: ["Boost application performance using asynchronous I/O", IBM](https://developer.ibm.com/technologies/linux/articles/l-async/)
+[^5]: Python 인터프리터는 [GIL](https://en.wikipedia.org/wiki/Global_interpreter_lock)이라는 태생적인 한계로 멀티스레딩을 달성하지 못한다.
