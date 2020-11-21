@@ -78,6 +78,9 @@ export const getGlobalStyle = (theme: Theme) => css`
     margin-block-end: 0.5em;
     font-size: 1rem;
     color: ${theme.colors[200]};
+    & > img {
+      margin: 4rem 0;
+    }
   }
 
   blockquote {
@@ -143,6 +146,13 @@ export const getGlobalStyle = (theme: Theme) => css`
 
   .gatsby-resp-image-image {
     margin: 1rem 0;
+  }
+
+  .gatsby-resp-image-figcaption {
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: ${theme.colors[400]};
   }
 
   ${prismVscodeCss}
