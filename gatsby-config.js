@@ -136,6 +136,14 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          include: /src\/assets\/.*\.svg$/,
+        },
+      },
+    },
+    {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: "appleseed's dev blog",
@@ -197,7 +205,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['IBM Plex Sans'],
+          families: ['IBM Plex Sans:400,600'],
         },
       },
     },

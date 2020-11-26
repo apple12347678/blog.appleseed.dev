@@ -11,10 +11,33 @@ export const getGlobalStyle = (theme: Theme) => css`
       'Noto Color Emoji';
     font-size: 16px;
     line-height: 1.75;
-    color: ${theme.colors[100]};
     @media (max-width: ${theme.breakpoints.xs}px) {
       font-size: 14px;
     }
+
+    --color-100: #17181c;
+    --color-200: #24252b;
+    --color-300: #393b44;
+    --color-400: #767c93;
+    --color-500: #8790ab;
+    --color-600: #99a2be;
+    --color-700: #b1bbd4;
+    --color-800: #d6e0f0;
+    --color-900: #f1f3f8;
+    @media (prefers-color-scheme: dark) {
+      --color-100: #f1f3f8;
+      --color-200: #d6e0f0;
+      --color-300: #b1bbd4;
+      --color-400: #99a2be;
+      --color-500: #8790ab;
+      --color-600: #767c93;
+      --color-700: #393b44;
+      --color-800: #24252b;
+      --color-900: #17181c;
+    }
+
+    color: var(--color-100);
+    background-color: var(--color-900);
   }
 
   body {
@@ -26,12 +49,12 @@ export const getGlobalStyle = (theme: Theme) => css`
   }
 
   *::selection {
-    color: ${theme.colors[900]};
-    background-color: ${theme.colors[100]};
+    color: var(--color-900);
+    background-color: var(--color-100);
   }
 
   a {
-    color: ${theme.colors[400]};
+    color: var(--color-400);
     text-decoration: none;
   }
 
@@ -41,7 +64,7 @@ export const getGlobalStyle = (theme: Theme) => css`
 
   h1,
   h2 {
-    font-weight: 700;
+    font-weight: 600;
     margin-block-start: 0.5em;
     margin-block-end: 0.25em;
   }
@@ -50,26 +73,26 @@ export const getGlobalStyle = (theme: Theme) => css`
   h5,
   h6 {
     font-weight: 600;
-    margin-block-start: 0.5em;
+    margin-block-start: 0.25em;
     margin-block-end: 0.15em;
   }
   h1 {
-    font-size: 2.25rem;
-  }
-  h2 {
     font-size: 2rem;
   }
-  h3 {
+  h2 {
     font-size: 1.75rem;
   }
-  h4 {
-    font-size: 1.6rem;
-  }
-  h5 {
+  h3 {
     font-size: 1.5rem;
   }
+  h4 {
+    font-size: 1.3rem;
+  }
+  h5 {
+    font-size: 1.25rem;
+  }
   h6 {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 
   p {
@@ -77,7 +100,7 @@ export const getGlobalStyle = (theme: Theme) => css`
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
     font-size: 1rem;
-    color: ${theme.colors[200]};
+    color: var(--color-200);
     & > img {
       margin: 4rem 0;
     }
@@ -88,9 +111,9 @@ export const getGlobalStyle = (theme: Theme) => css`
     padding-left: 24px;
     margin-block-start: 1em;
     margin-block-end: 1em;
-    border-left: 4px solid ${theme.colors[200]};
+    border-left: 4px solid var(--color-200);
     & > * {
-      color: ${theme.colors[400]};
+      color: var(--color-400);
     }
     & > p {
       font-size: 1.15rem;
@@ -101,8 +124,8 @@ export const getGlobalStyle = (theme: Theme) => css`
 
   li {
     margin: 0;
-    margin-block-start: 0.6em;
-    margin-block-end: 0.6em;
+    margin-block-start: 0.3em;
+    margin-block-end: 0.3em;
   }
 
   table {
@@ -124,7 +147,6 @@ export const getGlobalStyle = (theme: Theme) => css`
     ol {
       counter-reset: item;
       padding: 0;
-      /* padding-left: 20px; */
     }
     li {
       display: block;
@@ -152,7 +174,7 @@ export const getGlobalStyle = (theme: Theme) => css`
     text-align: center;
     margin-top: 0.5rem;
     font-size: 0.8rem;
-    color: ${theme.colors[400]};
+    color: var(--color-400);
   }
 
   ${prismVscodeCss}

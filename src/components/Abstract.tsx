@@ -13,7 +13,7 @@ const AbstractContainer = styled.div`
 `;
 
 const Title = styled(Link)<ThemeProps>`
-  color: ${(props) => props.theme.colors[100]};
+  color: var(--color-100);
   &:hover {
     text-decoration: none;
   }
@@ -22,7 +22,7 @@ const Title = styled(Link)<ThemeProps>`
 const DescriptionText = styled.span<ThemeProps>`
   display: block;
   font-size: 0.85rem;
-  color: ${(props) => props.theme.colors[300]};
+  color: var(--color-300);
   margin: 4px 0;
 `;
 

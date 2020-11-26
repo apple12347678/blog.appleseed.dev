@@ -6,7 +6,7 @@ import { Link } from 'gatsby';
 import { SitePageContext } from '../../graphql-types';
 import GatsbyIcon from '../assets/gatsby.svg';
 import GithubIcon from '../assets/github.svg';
-import ReactIcon from '../assets/react.svg';
+import ReactIcon from '../assets/reacticon.svg';
 import TypescriptIcon from '../assets/typescript.svg';
 import { ThemeProps } from '../styles/theme';
 import RootProvider from './RootProvider';
@@ -25,7 +25,7 @@ const HomeLink = styled(Link)<ThemeProps>`
   font-weight: 300;
   user-select: none;
   display: inherit;
-  color: ${(props) => props.theme.colors[100]};
+  color: var(--color-100);
   :hover {
     text-decoration: none;
   }
@@ -35,7 +35,8 @@ const GithubLink = styled.a`
   user-select: none;
 `;
 
-const SVGWrapper = styled.img<{ $sm?: boolean }>`
+const SVGWrapper = styled.div<{ $sm?: boolean }>`
+  fill: var(--color-100);
   ${(props) =>
     props.$sm
       ? `
@@ -55,14 +56,14 @@ const Footer = styled.footer`
 
 const Copyright = styled.span<ThemeProps>`
   margin-right: auto;
-  color: ${(props) => props.theme.colors[500]};
+  color: var(--color-500);
   font-size: 0.85rem;
   font-weight: 400;
   user-select: none;
 `;
 
 const PoweredBy = styled.span<ThemeProps>`
-  color: ${(props) => props.theme.colors[500]};
+  color: var(--color-500);
   font-size: 0.85rem;
   font-weight: 400;
   display: flex;
@@ -91,12 +92,9 @@ export default function Layout({
         <Header>
           <HomeLink to={rootPath}>appleseed.dev</HomeLink>
           <GithubLink href="https://github.com/apple12347678">
-            <SVGWrapper
-              width="32"
-              height="32"
-              alt="github-icon"
-              src={GithubIcon}
-            />
+            <SVGWrapper>
+              <GithubIcon />
+            </SVGWrapper>
           </GithubLink>
         </Header>
         <main>{children}</main>
@@ -105,31 +103,19 @@ export default function Layout({
           <PoweredBy>
             Powered by
             <a href="https://reactjs.org/">
-              <SVGWrapper
-                width="20"
-                height="20"
-                alt="react-icon"
-                $sm
-                src={ReactIcon}
-              />
+              <SVGWrapper $sm>
+                <ReactIcon width="20" height="20" />
+              </SVGWrapper>
             </a>
             <a href="https://www.typescriptlang.org/">
-              <SVGWrapper
-                width="20"
-                height="20"
-                alt="typescript-icon"
-                $sm
-                src={TypescriptIcon}
-              />
+              <SVGWrapper $sm>
+                <TypescriptIcon width="20" height="20" />
+              </SVGWrapper>
             </a>
             <a href="https://www.gatsbyjs.com/">
-              <SVGWrapper
-                width="20"
-                height="20"
-                alt="gatsby-icon"
-                $sm
-                src={GatsbyIcon}
-              />
+              <SVGWrapper $sm>
+                <GatsbyIcon width="20" height="20" />
+              </SVGWrapper>
             </a>
           </PoweredBy>
         </Footer>

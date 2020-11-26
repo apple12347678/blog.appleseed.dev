@@ -6,7 +6,7 @@ const { createFilePath } = require('gatsby-source-filesystem');
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
 
-  const BlogPost = path.resolve(`./src/templates/BlogPost.tsx`);
+  const BlogPost = path.resolve('./src/templates/BlogPost.tsx');
 
   const result = await graphql(
     `
@@ -33,7 +33,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      'There was an error loading your blog posts',
       result.errors,
     );
     return;
@@ -63,7 +63,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 exports.onCreateNode = ({ node, actions, getNode, getNodesByType }) => {
   const { createNode, createNodeField } = actions;
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (node.internal.type === 'MarkdownRemark') {
     const filePath = createFilePath({ node, getNode });
 
     const match = filePath.match(/^\/(.*)\/(ko|en)\/$/);
@@ -79,7 +79,7 @@ exports.onCreateNode = ({ node, actions, getNode, getNodesByType }) => {
       value: match[2],
     });
 
-    const tagNodes = getNodesByType(`Tag`);
+    const tagNodes = getNodesByType('Tag');
     node.frontmatter.tags.forEach((newTag) => {
       const searchedTag = tagNodes.find((n) => n.name === newTag);
       if (!searchedTag) {
@@ -87,11 +87,11 @@ exports.onCreateNode = ({ node, actions, getNode, getNodesByType }) => {
           name: newTag,
           id: uuidV4(),
           internal: {
-            type: `Tag`,
+            type: 'Tag',
             contentDigest: crypto
-              .createHash(`md5`)
+              .createHash('md5')
               .update(newTag)
-              .digest(`hex`),
+              .digest('hex'),
           },
         });
       }

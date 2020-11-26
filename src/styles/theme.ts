@@ -13,7 +13,7 @@ export const theme = {
     900: '#f1f3f8',
   },
   breakpoints: {
-    xs: 600,
+    xs: 720,
     sm: 960,
     md: 1280,
     lg: 1920,

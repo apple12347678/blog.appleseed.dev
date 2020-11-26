@@ -17,7 +17,7 @@ import { ThemeProps } from '../styles/theme';
 
 const BlogPostTitle = styled.h1<ThemeProps>`
   font-size: 3rem;
-  font-weight: 700;
+  font-weight: 600;
   @media (max-width: ${(props) => props.theme.breakpoints.xs}px) {
     font-size: 2.5rem;
   }
@@ -26,7 +26,7 @@ const BlogPostTitle = styled.h1<ThemeProps>`
 const DescriptionText = styled.span<ThemeProps>`
   display: block;
   font-size: 0.9rem;
-  color: ${(props) => props.theme.colors[300]};
+  color: var(--color-300);
   margin: 4px 0;
 `;
 
