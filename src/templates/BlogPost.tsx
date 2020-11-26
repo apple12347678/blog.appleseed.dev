@@ -10,7 +10,7 @@ import { CCL, Container, Error, SEO, TagContainer } from '../components';
 const BlogPostTitle = styled.h1`
   font-size: 3rem;
   font-weight: 600;
-  @media (max-width: var(--breakpoint-xs)) {
+  @media (max-width: 720px) {
     font-size: 2.5rem;
   }
 `;

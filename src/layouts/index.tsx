@@ -70,7 +70,7 @@ const PoweredBy = styled.span`
   ${SVGWrapper} {
     margin-left: 6px;
   }
-  @media (max-width: var(--breakpoint-xs)) {
+  @media (max-width: 720px) {
     display: none;
   }
 `;

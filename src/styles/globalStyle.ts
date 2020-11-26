@@ -11,11 +11,6 @@ export const globalStyle = css`
     font-size: 16px;
     line-height: 1.75;
 
-    --breakpoint-xs: 720px;
-    --breakpoint-sm: 960px;
-    --breakpoint-md: 1280px;
-    --breakpoint-lg: 1920px;
-
     --color-100: #17181c;
     --color-200: #24252b;
     --color-300: #393b44;
@@ -36,7 +31,7 @@ export const globalStyle = css`
       --color-800: #24252b;
       --color-900: #17181c;
     }
-    @media (max-width: var(--breakpoint-xs)) {
+    @media (max-width: 720px) {
       font-size: 14px;
     }
 
