@@ -5,14 +5,7 @@ import { graphql } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 
 import { BlogPostBySlugQuery } from '../../graphql-types';
-import {
-  CCL,
-  Container,
-  Error,
-  SEO,
-  TagContainer,
-  Utterances,
-} from '../components';
+import { CCL, Container, Error, SEO, TagContainer } from '../components';
 
 const BlogPostTitle = styled.h1`
   font-size: 3rem;
@@ -70,7 +63,6 @@ export default function BlogPostTemplate({
           {/* eslint-enable react/no-danger,@typescript-eslint/naming-convention */}
         </article>
         <CCL />
-        <Utterances />
       </Container>
     </>
   );

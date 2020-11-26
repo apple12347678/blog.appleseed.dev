@@ -5,4 +5,3 @@ export { default as Error } from './Error';
 export { default as Abstract } from './Abstract';
 export { default as Container } from './Container';
 export { default as CCL } from './CCL';
-export { default as Utterances } from './Utterances';
