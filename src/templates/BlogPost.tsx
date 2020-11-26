@@ -13,17 +13,16 @@ import {
   TagContainer,
   Utterances,
 } from '../components';
-import { ThemeProps } from '../styles/theme';
 
-const BlogPostTitle = styled.h1<ThemeProps>`
+const BlogPostTitle = styled.h1`
   font-size: 3rem;
   font-weight: 600;
-  @media (max-width: ${(props) => props.theme.breakpoints.xs}px) {
+  @media (max-width: var(--breakpoint-xs)) {
     font-size: 2.5rem;
   }
 `;
 
-const DescriptionText = styled.span<ThemeProps>`
+const DescriptionText = styled.span`
   display: block;
   font-size: 0.9rem;
   color: var(--color-300);

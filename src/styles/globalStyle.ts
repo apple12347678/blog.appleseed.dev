@@ -1,9 +1,8 @@
 import { css } from '@emotion/core';
 
 import { prismCodeHighlightCss, prismVscodeCss } from './prism';
-import { Theme } from './theme';
 
-export const getGlobalStyle = (theme: Theme) => css`
+export const globalStyle = css`
   html {
     font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
       Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
@@ -11,9 +10,11 @@ export const getGlobalStyle = (theme: Theme) => css`
       'Noto Color Emoji';
     font-size: 16px;
     line-height: 1.75;
-    @media (max-width: ${theme.breakpoints.xs}px) {
-      font-size: 14px;
-    }
+
+    --breakpoint-xs: 720px;
+    --breakpoint-sm: 960px;
+    --breakpoint-md: 1280px;
+    --breakpoint-lg: 1920px;
 
     --color-100: #17181c;
     --color-200: #24252b;
@@ -34,6 +35,9 @@ export const getGlobalStyle = (theme: Theme) => css`
       --color-700: #393b44;
       --color-800: #24252b;
       --color-900: #17181c;
+    }
+    @media (max-width: var(--breakpoint-xs)) {
+      font-size: 14px;
     }
 
     color: var(--color-100);
@@ -143,6 +147,10 @@ export const getGlobalStyle = (theme: Theme) => css`
     border-radius: 4px;
   }
 
+  img {
+    background-color: white;
+  }
+
   .footnotes {
     ol {
       counter-reset: item;
@@ -177,7 +185,15 @@ export const getGlobalStyle = (theme: Theme) => css`
     color: var(--color-400);
   }
 
+  .anchor > svg {
+    fill: var(--color-100);
+  }
+
   ${prismVscodeCss}
 
   ${prismCodeHighlightCss}
+
+  :not(pre) > code[class*='language-'] {
+    background-color: var(----color-600);
+  }
 `;

@@ -8,7 +8,6 @@ import GatsbyIcon from '../assets/gatsby.svg';
 import GithubIcon from '../assets/github.svg';
 import ReactIcon from '../assets/reacticon.svg';
 import TypescriptIcon from '../assets/typescript.svg';
-import { ThemeProps } from '../styles/theme';
 import RootProvider from './RootProvider';
 
 const LayoutContainer = styled.div`
@@ -20,7 +19,7 @@ const Header = styled.header`
   justify-content: space-between;
 `;
 
-const HomeLink = styled(Link)<ThemeProps>`
+const HomeLink = styled(Link)`
   font-size: 1.25rem;
   font-weight: 300;
   user-select: none;
@@ -54,7 +53,7 @@ const Footer = styled.footer`
   display: flex;
 `;
 
-const Copyright = styled.span<ThemeProps>`
+const Copyright = styled.span`
   margin-right: auto;
   color: var(--color-500);
   font-size: 0.85rem;
@@ -62,7 +61,7 @@ const Copyright = styled.span<ThemeProps>`
   user-select: none;
 `;
 
-const PoweredBy = styled.span<ThemeProps>`
+const PoweredBy = styled.span`
   color: var(--color-500);
   font-size: 0.85rem;
   font-weight: 400;
@@ -71,7 +70,7 @@ const PoweredBy = styled.span<ThemeProps>`
   ${SVGWrapper} {
     margin-left: 6px;
   }
-  @media (max-width: ${(props) => props.theme.breakpoints.xs}px) {
+  @media (max-width: var(--breakpoint-xs)) {
     display: none;
   }
 `;

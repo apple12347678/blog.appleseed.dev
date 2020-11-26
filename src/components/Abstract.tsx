@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 
-import { ThemeProps } from '../styles/theme';
 import TagContainer from './TagContainer';
 
 const AbstractContainer = styled.div`
@@ -12,14 +11,14 @@ const AbstractContainer = styled.div`
   display: block;
 `;
 
-const Title = styled(Link)<ThemeProps>`
+const Title = styled(Link)`
   color: var(--color-100);
   &:hover {
     text-decoration: none;
   }
 `;
 
-const DescriptionText = styled.span<ThemeProps>`
+const DescriptionText = styled.span`
   display: block;
   font-size: 0.85rem;
   color: var(--color-300);

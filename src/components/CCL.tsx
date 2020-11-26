@@ -4,9 +4,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { Trans, useTranslation } from 'react-i18next';
 
-import { ThemeProps } from '../styles/theme';
-
-const License = styled.div<ThemeProps>`
+const License = styled.div`
   margin-bottom: 2rem;
   font-size: 0.85rem;
   color: var(--color-500);
