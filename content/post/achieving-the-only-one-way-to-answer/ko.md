@@ -68,17 +68,18 @@ r = f(5) # r=5
 s, t = f(10) # runtime error
 u = f(9, 8) # u=<tuple> -> potential error
 ```
+
 ```javascript
 const f = (a, b) => {
   if (b !== undefined) {
-    return [a + b, a - b]
+    return [a + b, a - b];
   }
-  return a
-}
-const [p, q] = f(1, 2) // p=3, q=-1
-const r = f(5) // r=5
-const [s, t] = f(10) // runtime error
-const u = f(9, 8) // u=<list> -> potential error
+  return a;
+};
+const [p, q] = f(1, 2); // p=3, q=-1
+const r = f(5); // r=5
+const [s, t] = f(10); // runtime error
+const u = f(9, 8); // u=<list> -> potential error
 ```
 
 함수 `f`는 매개변수로 하나 또는 두 개의 값을 받는다. 반환형은 튜플이거나 단일 값이다. 이런 식으로 작성한 함수는 프로그래머에게 네 가지의 가능성을 주지만, 실제로 정답인 경우는 두 개 뿐이다. 두 기능을 별도의 함수로 작성하는 것에 비해 간결하냐 하면, 그것도 아니다. 두 번째 매개변수를 검사하는 조건문을 쓰는 것은 함수를 하나 더 쓰는 것과 비교해 그닥 간결하다고 할 수 없다. 엄격한 타입 시스템은 이런 모호한 함수의 작성을 차단하면서도 생산성을 잃지 않도록 할 수 있다. 예를 들어, 위 함수의 반환 값을 튜플로 고정하기만 해도 하나의 잠재적인 오답을 확정적으로 피할 수 있다.
@@ -95,17 +96,18 @@ r, _ = f(5) # r=5
 s, t = f(10) # s=10, t=None -> potential error
 u, _ = f(9, 8) # u=17
 ```
+
 ```typescript
 const f = (a: number, b?: number): [number, number | undefined] => {
   if (b !== undefined) {
-    return [a + b, a - b]
+    return [a + b, a - b];
   }
-  return [a, undefined]
-}
-const [p, q] = f(1, 2) // p=3, q=-1
-const [r] = f(5) // r=5
-const [s, t] = f(10) // s=10, t=undefined -> potential error
-const [u] = f(9, 8) // u=17
+  return [a, undefined];
+};
+const [p, q] = f(1, 2); // p=3, q=-1
+const [r] = f(5); // r=5
+const [s, t] = f(10); // s=10, t=undefined -> potential error
+const [u] = f(9, 8); // u=17
 ```
 
 여전히 좋은 코드라고 할 수는 없지만 호출 시 발생하는 런타임 에러는 모두 해결된다.
@@ -125,10 +127,10 @@ linter는 코드 스타일을 강제하고 잠재적으로 에러가 날 만한 
 AST는 abstract syntax tree의 줄임말로 추상 문법 트리 정도로 번역할 수 있겠다. 우리가 실제로 작성하는 코드는 그냥 syntax, 혹은 더 특수한 표현으로는 concrete syntax라고 할 수 있다. 다양한 concrete syntax도 하나의 abstract syntax를 결과물로 낼 수 있다. 예를 들어, 덧셈을 `Add`, 숫자를 `Number`라는 추상 문법으로 나타낸다면, 아래 코드들은 모두 `Add(Number(1), Number(2))`와 동일하다.
 
 ```typescript
-1 + 2
 1 + 2;
-1+2
-1  +  2
+1 + 2;
+1 + 2;
+1 + 2;
 ```
 
 linter는 AST를 구하고 그 AST를 각종 규칙을 통해 검사하며 규칙에 어긋난 코드가 있는지 검사한다. JavaScript/TypeScript의 사실상 표준 linter인 [eslint의](https://eslint.org/) 규칙들 중 React 훅 API 관련 코드를 lint하는 [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) 패키지는 React 공식 도큐멘테이션의 [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) 페이지에 있는 규칙들을 개발자가 준수하고 있는지를 철저하게 검사한다.
