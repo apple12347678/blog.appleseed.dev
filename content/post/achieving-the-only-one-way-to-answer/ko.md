@@ -126,11 +126,12 @@ linter는 코드 스타일을 강제하고 잠재적으로 에러가 날 만한 
 
 AST는 abstract syntax tree의 줄임말로 추상 문법 트리 정도로 번역할 수 있겠다. 우리가 실제로 작성하는 코드는 그냥 syntax, 혹은 더 특수한 표현으로는 concrete syntax라고 할 수 있다. 다양한 concrete syntax도 하나의 abstract syntax를 결과물로 낼 수 있다. 예를 들어, 덧셈을 `Add`, 숫자를 `Number`라는 추상 문법으로 나타낸다면, 아래 코드들은 모두 `Add(Number(1), Number(2))`와 동일하다.
 
+<!-- prettier-ignore -->
 ```typescript
+1 + 2
 1 + 2;
-1 + 2;
-1 + 2;
-1 + 2;
+(1 + 2)
+1+2
 ```
 
 linter는 AST를 구하고 그 AST를 각종 규칙을 통해 검사하며 규칙에 어긋난 코드가 있는지 검사한다. JavaScript/TypeScript의 사실상 표준 linter인 [eslint의](https://eslint.org/) 규칙들 중 React 훅 API 관련 코드를 lint하는 [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) 패키지는 React 공식 도큐멘테이션의 [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) 페이지에 있는 규칙들을 개발자가 준수하고 있는지를 철저하게 검사한다.
