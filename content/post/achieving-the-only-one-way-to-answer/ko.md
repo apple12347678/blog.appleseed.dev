@@ -134,7 +134,7 @@ AST는 abstract syntax tree의 줄임말로 추상 문법 트리 정도로 번�
 1+2
 ```
 
-linter는 AST를 구하고 그 AST를 각종 규칙을 통해 검사하며 규칙에 어긋난 코드가 있는지 검사한다. JavaScript/TypeScript의 사실상 표준 linter인 [eslint의](https://eslint.org/) 규칙들 중 React 훅 API 관련 코드를 lint하는 [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) 패키지는 React 공식 도큐멘테이션의 [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) 페이지에 있는 규칙들을 개발자가 준수하고 있는지를 철저하게 검사한다.
+linter는 AST를 구하고 그 AST를 각종 규칙을 통해 검사하며 규칙에 어긋난 코드가 있는지 검사한다. JavaScript/TypeScript의 사실상 표준 linter인 [eslint](https://eslint.org/) 규칙들 중 React 훅 API 관련 코드를 lint하는 [eslint-plugin-react-hooks](https://www.npmjs.com/package/eslint-plugin-react-hooks) 패키지는 React 공식 도큐멘테이션의 [Rules of Hooks](https://reactjs.org/docs/hooks-rules.html) 페이지에 있는 규칙들을 개발자가 준수하고 있는지를 철저하게 검사한다.
 
 훅이 함수형 컴포넌트 또는 또다른 훅 안에서 최상위 레벨에서만 사용된다는 사실을 어떻게 알 수 있을까? AST를 구하고 나면 일차적으로 이런 함수들을 훅으로 판단할 수 있을 것이다.
 
@@ -178,6 +178,8 @@ JavaScript/TypeScript 포매터로는 많은 사랑을 받는 [Prettier](https:/
 CI는 리모트 저장소에 코드를 push했을 때 검사를 진행한다. GitHub이나 GitLab등의 리모트 저장소들은 CI를 통한 체크가 통과했을 때만 코드를 합치는 등의 설정을 할 수 있다. 이 때는 가급적이면 staged된(혹은 변경된) 파일들뿐만 아니라 전체 코드에 대해 검사를 진행하는 것이 좋다. 왜냐하면 부분적으로는 옳지만 전체적으로는 틀린 경우들이 분명히 있고, CI가 돌아가는 시간은 commit이 대기하는 시간보다는 덜 부담스럽기 때문이다.
 
 # 정리
+
+내가 아주 초보적인 JavaScript/NodeJS 개발자였을 때(TypeScript v2가 나오기 전), 어떤 node 스크립트를 큰 프로젝트에 커밋하면서 시니어분에게 코드 리뷰를 받을 기회가 생겼었다. for문으로 객체 순회, async/await와 Promise 혼용, side effect로 점철된 함수들 등 지금 내가 리뷰하라고 하면 바로 PR 닫을 정도의 쓰레기 코드였지만 시니어분께서 자비롭게도 지속적으로 리뷰해주셔서 결국 머지할 수 있었다. 그 때 가장 먼저 달렸던 코멘트가 "혹시 eslint 안쓰시나요?"였다. 나는 그 때 linter를 처음 알았고, eslint를 돌리자마자 수많은 에러가 튀어나왔다. 이 일 이후로 나는 linter와 포매터 설정을 충돌이 없는 한에서 가장 강하게 쓴다. 그것이 나뿐만 아니라 내 코드를 읽을 동료들 또는 시니어들에게 예의라고 생각하기 때문이다.
 
 나와 내 동료들을 위해 하나의 정답을 추구하자. JavaScript 개발자들은 TypeScript/eslint/prettier/lint-staged를 습관화하고, Python 개발자들은 pylint/black을 습관화하자. 하나의 정답에 가까워질수록 스스로도 코드를 읽고 이해하기 쉬워질 것이고, 동료들의 생산성 또한 높일 수 있을 것이다.
 
