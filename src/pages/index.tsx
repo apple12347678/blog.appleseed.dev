@@ -1,19 +1,11 @@
 import React from 'react';
 
-import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
+import { FluidObject } from 'gatsby-image';
 import { useTranslation } from 'react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
-import { Abstract, Container, SEO } from '../components';
-
-const BannerContainer = styled.div`
-  padding: 60px 0;
-`;
-
-const Title = styled.h1`
-  font-size: 3rem;
-`;
+import { Abstract, Banner, Container, SEO } from '../components';
 
 interface IHomeProps {
   data: HomeDataQuery;
@@ -27,10 +19,7 @@ export default function Home({ data }: IHomeProps) {
     <>
       <SEO title="Home" />
       <Container>
-        <BannerContainer>
-          <Title>{t('index.title')}</Title>
-          <p>{t('index.introduction')}</p>
-        </BannerContainer>
+        <Banner file={data.file!.childImageSharp!.fluid as FluidObject} />
         {posts.length === 0 ? (
           <p>{t('index.nopost')}</p>
         ) : (
@@ -57,6 +46,13 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    file(relativePath: { eq: "profile.jpg" }) {
+      childImageSharp {
+        fluid {
+          ...GatsbyImageSharpFluid
+        }
       }
     }
     allMarkdownRemark(
