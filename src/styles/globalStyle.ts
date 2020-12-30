@@ -102,6 +102,7 @@ export const globalStyle = css`
     color: var(--color-200);
     & > img {
       margin: 4rem 0;
+      max-width: 100%;
     }
   }
 

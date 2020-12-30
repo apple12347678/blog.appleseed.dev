@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - post
 
 jobs:
   test:
@@ -56,9 +57,3 @@ jobs:
         run: yarn build
       - name: Deploy
         run: aws s3 sync ./public s3://blog.appleseed.dev
-      - name: Purge CDN
-        run: |
-          aws cloudfront create-invalidation --distribution-id E13WRTNEH0QI9H --paths \
-          / "/index*" "/404*" "/post*" "/icons*" \
-          /browserconfig.xml /chunk-map.json "/manifest.*" \
-          /favicon.ico /robots.txt /rss.xml /sw.js
