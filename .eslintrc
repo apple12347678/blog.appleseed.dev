@@ -4,7 +4,7 @@
     "ecmaFeatures": { "jsx": true },
     "ecmaVersion": 11,
     "sourceType": "module",
-    "project": "tsconfig.json"
+    "project": ["tsconfig.json", "tsconfig.script.json", "tsconfig.gatsby.json"]
   },
   "plugins": [
     "@typescript-eslint",
