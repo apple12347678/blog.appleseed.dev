@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import { useTranslation } from 'react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
-import { Abstract, Container, SEO } from '../components';
+import { Abstract, Container, Nav, SEO } from '../components';
 
 const Title = styled.h1`
   font-size: 3rem;
@@ -13,11 +13,12 @@ interface IPageTemplateProps {
   pageContext: {
     posts: HomeDataQuery['allMarkdownRemark']['nodes'];
     pageIndex: number;
+    isLastPage: boolean;
   };
 }
 
 export default function PageTemplate({
-  pageContext: { posts, pageIndex },
+  pageContext: { posts, pageIndex, isLastPage },
 }: IPageTemplateProps) {
   const { t } = useTranslation();
   return (
@@ -41,6 +42,10 @@ export default function PageTemplate({
             />
           ))
         )}
+        <Nav
+          prev={pageIndex === 1 ? '/' : `/page/${pageIndex - 1}`}
+          next={isLastPage ? undefined : `/page/${pageIndex + 1}`}
+        />
       </Container>
     </>
   );

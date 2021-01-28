@@ -3,7 +3,7 @@ import { FluidObject } from 'gatsby-image';
 import { useTranslation } from 'react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
-import { Abstract, Banner, Container, SEO } from '../components';
+import { Abstract, Banner, Container, Nav, SEO } from '../components';
 
 interface IHomeProps {
   data: HomeDataQuery;
@@ -34,6 +34,7 @@ export default function Home({ data }: IHomeProps) {
             />
           ))
         )}
+        {data.allSitePage.nodes.length !== 0 && <Nav next="/page/1" />}
       </Container>
     </>
   );
@@ -73,6 +74,16 @@ export const pageQuery = graphql`
           tags
         }
         timeToRead
+      }
+    }
+    allSitePage(
+      filter: {
+        path: { regex: "//page//" }
+        context: { language: { eq: $language } }
+      }
+    ) {
+      nodes {
+        path
       }
     }
   }

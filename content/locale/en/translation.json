@@ -6,5 +6,7 @@
   "index.nopost": "No posts currently available.",
   "abstract.timeToRead": "{{ timeToRead }} min read",
   "ccl.alt": "Creative Commons License",
-  "ccl.description": "This work is licensed under a <0>Creative Commons Attribution-ShareAlike 4.0 International License</0>."
+  "ccl.description": "This work is licensed under a <0>Creative Commons Attribution-ShareAlike 4.0 International License</0>.",
+  "word.next": "Next",
+  "word.prev": "Prev"
 }

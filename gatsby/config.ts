@@ -17,14 +17,7 @@ const config: GatsbyConfig = {
   },
   plugins: [
     'gatsby-plugin-graphql-codegen',
-    {
-      resolve: 'gatsby-plugin-typescript',
-      options: {
-        isTSX: true,
-        jsxPragma: 'jsx',
-        allExtensions: true,
-      },
-    },
+    'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-source-filesystem',
       options: {
@@ -175,7 +168,6 @@ const config: GatsbyConfig = {
             src: 'icons/android-icon-36x36.png',
             sizes: '36x36',
             type: 'image/png',
-            density: '0.75',
           },
           {
             src: 'icons/android-icon-48x48.png',
