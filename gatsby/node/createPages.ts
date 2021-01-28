@@ -106,6 +106,7 @@ const createPages: GatsbyNode['createPages'] = async ({
         return;
       }
       for (let i = 1; i * postsPerPage < langPosts.length; i += 1) {
+        console.log(lang, i);
         createPage({
           path: `${lang === 'ko' ? '' : '/en'}/page/${i}`,
           component: Page,

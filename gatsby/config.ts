@@ -58,6 +58,10 @@ const config: GatsbyConfig = {
             matchPath: '/:lang?/post/:slug',
             getLanguageFromPath: true,
           },
+          {
+            matchPath: '/:lang?/page/:index',
+            getLanguageFromPath: true,
+          },
         ],
       },
     },

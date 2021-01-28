@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styled from '@emotion/styled';
 import Img, { FluidObject } from 'gatsby-image';
 import { Trans, useTranslation } from 'react-i18next';

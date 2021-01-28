@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { graphql, useStaticQuery } from 'gatsby';
 import { Helmet, useI18next } from 'gatsby-plugin-react-i18next';
 

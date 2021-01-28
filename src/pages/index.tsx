@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import { useTranslation } from 'react-i18next';
@@ -42,7 +40,7 @@ export default function Home({ data }: IHomeProps) {
 }
 
 export const pageQuery = graphql`
-  query HomeData($language: String!) {
+  query HomeData($language: String!, $postsPerPage: Int!) {
     site {
       siteMetadata {
         title
@@ -61,6 +59,7 @@ export const pageQuery = graphql`
         fields: { lang: { eq: $language } }
       }
       sort: { fields: [frontmatter___date], order: DESC }
+      limit: $postsPerPage
     ) {
       nodes {
         excerpt

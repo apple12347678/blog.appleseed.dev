@@ -1,6 +1,3 @@
-/* eslint-disable react/jsx-one-expression-per-line */
-import React from 'react';
-
 import styled from '@emotion/styled';
 import { Trans, useTranslation } from 'react-i18next';
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { memo } from 'react';
 
 import { css } from '@emotion/core';
 import styled from '@emotion/styled';
@@ -70,4 +70,4 @@ function Tag({ name, to }: ITagProps) {
   );
 }
 
-export default React.memo(Tag);
+export default memo(Tag);

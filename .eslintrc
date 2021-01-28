@@ -86,6 +86,7 @@
     "prettier/prettier": "error",
     "react/jsx-indent": "off",
     "react/jsx-filename-extension": "off",
+    "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
     "simple-import-sort/sort": [
       "warn",

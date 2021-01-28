@@ -1,5 +1,3 @@
-import React from 'react';
-
 import styled from '@emotion/styled';
 import { graphql } from 'gatsby';
 import { useTranslation } from 'react-i18next';

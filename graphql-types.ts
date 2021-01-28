@@ -2742,14 +2742,6 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___allExtensions'
   | 'pluginCreator___pluginOptions___path'
   | 'pluginCreator___pluginOptions___name'
-  | 'pluginCreator___pluginOptions___languages'
-  | 'pluginCreator___pluginOptions___defaultLanguage'
-  | 'pluginCreator___pluginOptions___i18nextOptions___keySeparator'
-  | 'pluginCreator___pluginOptions___i18nextOptions___nsSeparator'
-  | 'pluginCreator___pluginOptions___redirect'
-  | 'pluginCreator___pluginOptions___pages'
-  | 'pluginCreator___pluginOptions___pages___matchPath'
-  | 'pluginCreator___pluginOptions___pages___getLanguageFromPath'
   | 'pluginCreator___pluginOptions___offsetY'
   | 'pluginCreator___pluginOptions___className'
   | 'pluginCreator___pluginOptions___maxWidth'
@@ -2803,6 +2795,14 @@ export type SitePageFieldsEnum =
   | 'pluginCreator___pluginOptions___include_favicon'
   | 'pluginCreator___pluginOptions___legacy'
   | 'pluginCreator___pluginOptions___theme_color_in_head'
+  | 'pluginCreator___pluginOptions___languages'
+  | 'pluginCreator___pluginOptions___defaultLanguage'
+  | 'pluginCreator___pluginOptions___i18nextOptions___keySeparator'
+  | 'pluginCreator___pluginOptions___i18nextOptions___nsSeparator'
+  | 'pluginCreator___pluginOptions___redirect'
+  | 'pluginCreator___pluginOptions___pages'
+  | 'pluginCreator___pluginOptions___pages___matchPath'
+  | 'pluginCreator___pluginOptions___pages___getLanguageFromPath'
   | 'pluginCreator___nodeAPIs'
   | 'pluginCreator___browserAPIs'
   | 'pluginCreator___ssrAPIs'
@@ -3023,15 +3023,6 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___allExtensions'
   | 'pluginOptions___path'
   | 'pluginOptions___name'
-  | 'pluginOptions___languages'
-  | 'pluginOptions___defaultLanguage'
-  | 'pluginOptions___i18nextOptions___interpolation___escapeValue'
-  | 'pluginOptions___i18nextOptions___keySeparator'
-  | 'pluginOptions___i18nextOptions___nsSeparator'
-  | 'pluginOptions___redirect'
-  | 'pluginOptions___pages'
-  | 'pluginOptions___pages___matchPath'
-  | 'pluginOptions___pages___getLanguageFromPath'
   | 'pluginOptions___offsetY'
   | 'pluginOptions___className'
   | 'pluginOptions___maxWidth'
@@ -3085,6 +3076,15 @@ export type SitePluginFieldsEnum =
   | 'pluginOptions___include_favicon'
   | 'pluginOptions___legacy'
   | 'pluginOptions___theme_color_in_head'
+  | 'pluginOptions___languages'
+  | 'pluginOptions___defaultLanguage'
+  | 'pluginOptions___i18nextOptions___interpolation___escapeValue'
+  | 'pluginOptions___i18nextOptions___keySeparator'
+  | 'pluginOptions___i18nextOptions___nsSeparator'
+  | 'pluginOptions___redirect'
+  | 'pluginOptions___pages'
+  | 'pluginOptions___pages___matchPath'
+  | 'pluginOptions___pages___getLanguageFromPath'
   | 'nodeAPIs'
   | 'browserAPIs'
   | 'ssrAPIs'
@@ -3206,11 +3206,6 @@ export type SitePluginPluginOptions = {
   allExtensions?: Maybe<Scalars['Boolean']>;
   path?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
-  languages?: Maybe<Array<Maybe<Scalars['String']>>>;
-  defaultLanguage?: Maybe<Scalars['String']>;
-  i18nextOptions?: Maybe<SitePluginPluginOptionsI18nextOptions>;
-  redirect?: Maybe<Scalars['Boolean']>;
-  pages?: Maybe<Array<Maybe<SitePluginPluginOptionsPages>>>;
   offsetY?: Maybe<Scalars['Int']>;
   className?: Maybe<Scalars['String']>;
   maxWidth?: Maybe<Scalars['Int']>;
@@ -3257,6 +3252,11 @@ export type SitePluginPluginOptions = {
   include_favicon?: Maybe<Scalars['Boolean']>;
   legacy?: Maybe<Scalars['Boolean']>;
   theme_color_in_head?: Maybe<Scalars['Boolean']>;
+  languages?: Maybe<Array<Maybe<Scalars['String']>>>;
+  defaultLanguage?: Maybe<Scalars['String']>;
+  i18nextOptions?: Maybe<SitePluginPluginOptionsI18nextOptions>;
+  redirect?: Maybe<Scalars['Boolean']>;
+  pages?: Maybe<Array<Maybe<SitePluginPluginOptionsPages>>>;
 };
 
 export type SitePluginPluginOptionsFeeds = {
@@ -3282,11 +3282,6 @@ export type SitePluginPluginOptionsFilterInput = {
   allExtensions?: Maybe<BooleanQueryOperatorInput>;
   path?: Maybe<StringQueryOperatorInput>;
   name?: Maybe<StringQueryOperatorInput>;
-  languages?: Maybe<StringQueryOperatorInput>;
-  defaultLanguage?: Maybe<StringQueryOperatorInput>;
-  i18nextOptions?: Maybe<SitePluginPluginOptionsI18nextOptionsFilterInput>;
-  redirect?: Maybe<BooleanQueryOperatorInput>;
-  pages?: Maybe<SitePluginPluginOptionsPagesFilterListInput>;
   offsetY?: Maybe<IntQueryOperatorInput>;
   className?: Maybe<StringQueryOperatorInput>;
   maxWidth?: Maybe<IntQueryOperatorInput>;
@@ -3333,6 +3328,11 @@ export type SitePluginPluginOptionsFilterInput = {
   include_favicon?: Maybe<BooleanQueryOperatorInput>;
   legacy?: Maybe<BooleanQueryOperatorInput>;
   theme_color_in_head?: Maybe<BooleanQueryOperatorInput>;
+  languages?: Maybe<StringQueryOperatorInput>;
+  defaultLanguage?: Maybe<StringQueryOperatorInput>;
+  i18nextOptions?: Maybe<SitePluginPluginOptionsI18nextOptionsFilterInput>;
+  redirect?: Maybe<BooleanQueryOperatorInput>;
+  pages?: Maybe<SitePluginPluginOptionsPagesFilterListInput>;
 };
 
 export type SitePluginPluginOptionsGoogle = {
