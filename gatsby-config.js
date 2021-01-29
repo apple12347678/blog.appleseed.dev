@@ -1,3 +1,3 @@
-require('ts-node').register({ project: './tsconfig.gatsby.json' });
+require('ts-node').register({ project: './gatsby/tsconfig.json' });
 
 module.exports = require('./gatsby/config').default;

@@ -1,4 +1,4 @@
-require('ts-node').register({ project: './tsconfig.gatsby.json' });
+require('ts-node').register({ project: './gatsby/tsconfig.json' });
 require('dotenv').config();
 
 exports.createPages = require('./gatsby/node').createPages;
