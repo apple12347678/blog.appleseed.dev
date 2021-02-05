@@ -30,7 +30,7 @@
     "format:check": "yarn format --check",
     "format:write": "yarn format --write",
     "refactor": "yarn tsc && yarn lint:fix && yarn format:write",
-    "create-article": "TS_NODE_PROJECT=tsconfig.script.json yarn ts-node script/create-article.ts",
+    "create-article": "TS_NODE_PROJECT=script/tsconfig.json yarn ts-node script/create-article.ts",
     "clean-start": "yarn clean && yarn build && yarn serve"
   },
   "dependencies": {
