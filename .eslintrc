@@ -88,7 +88,7 @@
     "react/jsx-filename-extension": "off",
     "react/react-in-jsx-scope": "off",
     "react/require-default-props": "off",
-    "simple-import-sort/sort": [
+    "simple-import-sort/imports": [
       "warn",
       {
         "groups": [
