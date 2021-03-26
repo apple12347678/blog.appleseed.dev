@@ -1,4 +1,4 @@
-import { css } from '@emotion/core';
+import { css } from '@emotion/react';
 
 /* https://github.com/PrismJS/prism-themes/blob/master/themes/prism-vsc-dark-plus.css */
 export const prismVscodeCss = css`
