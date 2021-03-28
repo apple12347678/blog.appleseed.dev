@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { graphql } from 'gatsby';
 import { useTranslation } from 'react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
@@ -50,3 +51,17 @@ export default function PageTemplate({
     </>
   );
 }
+
+export const query = graphql`
+  query PageByIndex($language: String!) {
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
+  }
+`;

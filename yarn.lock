@@ -4813,6 +4813,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"babel-jsx-utils@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "babel-jsx-utils@npm:1.1.0"
+  checksum: 09e974bd523a1098a018c2aa0524c1b483689edf298ef475c5ef88770b6e2e0a87514941b5834d643039631d157e7503a990b5fee614caab1500984e592bf1fe
+  languageName: node
+  linkType: hard
+
 "babel-loader@npm:^8.2.2":
   version: 8.2.2
   resolution: "babel-loader@npm:8.2.2"
@@ -5247,6 +5254,8 @@ __metadata:
     "@types/yargs": ^16.0.1
     "@typescript-eslint/eslint-plugin": ^4.19.0
     "@typescript-eslint/parser": ^4.19.0
+    anser: ^2.0.1
+    css.escape: ^1.5.1
     dotenv: ^8.2.0
     eslint: ^7.22.0
     eslint-config-airbnb: ^18.2.1
@@ -5258,14 +5267,15 @@ __metadata:
     eslint-plugin-react: ^7.23.1
     eslint-plugin-react-hooks: ^4.2.0
     eslint-plugin-simple-import-sort: ^7.0.0
+    event-source-polyfill: ^1.0.22
     gatsby: ^3.1.2
-    gatsby-image: ^3.1.0
     gatsby-legacy-polyfills: ^1.1.0
     gatsby-link: ^3.1.0
     gatsby-plugin-emotion: ^6.1.0
     gatsby-plugin-feed: ^3.1.0
     gatsby-plugin-google-analytics: ^3.1.0
     gatsby-plugin-graphql-codegen: ^2.7.1
+    gatsby-plugin-image: ^1.1.2
     gatsby-plugin-layout: ^2.1.0
     gatsby-plugin-manifest: ^3.1.0
     gatsby-plugin-react-helmet: ^4.1.0
@@ -5294,9 +5304,11 @@ __metadata:
     lint-staged: ^10.5.4
     lodash: ^4.17.21
     mitt: ^2.1.0
+    platform: ^1.3.6
     prettier: 2.2.1
     prismjs: ^1.23.0
     prop-types: ^15.7.2
+    query-string: ^7.0.0
     react: ^17.0.2
     react-dom: ^17.0.2
     react-helmet: ^6.1.0
@@ -5304,6 +5316,7 @@ __metadata:
     regenerator-runtime: ^0.13.8
     remark-parse: ^9.0.0
     shallow-compare: ^1.2.2
+    stack-trace: ^0.0.10
     svg-react-loader: ^0.4.6
     ts-node: ^9.1.1
     typescript: ^4.2.3
@@ -8486,7 +8499,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"event-source-polyfill@npm:^1.0.15":
+"event-source-polyfill@npm:^1.0.15, event-source-polyfill@npm:^1.0.22":
   version: 1.0.22
   resolution: "event-source-polyfill@npm:1.0.22"
   checksum: 59fc715a4c1e81128859d3ac580562ebc16785df7d21a24ba9cf97ba20402f60cf65c077cdccc11de80024eeeae6069582c278589b175f2eb8093e8420be77cd
@@ -9534,17 +9547,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"gatsby-image@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "gatsby-image@npm:3.1.0"
-  dependencies:
-    "@babel/runtime": ^7.12.5
-    object-fit-images: ^3.2.4
-    prop-types: ^15.7.2
-  checksum: d525d210781108fc983bee4d64b0c26cd39e6c8bd39dd7cb3f62d5544c008b835fcd37778bea0247aa3a6423593d1511300cbd6ab05fd898ac0f64c82df1dd8e
-  languageName: node
-  linkType: hard
-
 "gatsby-legacy-polyfills@npm:^1.1.0":
   version: 1.1.0
   resolution: "gatsby-legacy-polyfills@npm:1.1.0"
@@ -9654,6 +9656,32 @@ fsevents@~2.3.1:
     graphql: ^14.6.0
     typescript: ^3.7.5
   checksum: 8e1ea2df3ffb7f000caaf683c1279531d20aeab2f8e49b1329b9125863636886a02806fabf448f55957aab834e85fae4fb6380311391d2fc08f3b077d60f49c7
+  languageName: node
+  linkType: hard
+
+"gatsby-plugin-image@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "gatsby-plugin-image@npm:1.1.2"
+  dependencies:
+    "@babel/code-frame": ^7.12.13
+    "@babel/parser": ^7.12.5
+    "@babel/traverse": ^7.12.5
+    babel-jsx-utils: ^1.1.0
+    babel-plugin-remove-graphql-queries: ^3.1.0
+    camelcase: ^5.3.1
+    chokidar: ^3.5.1
+    common-tags: ^1.8.0
+    fs-extra: ^8.1.0
+    gatsby-core-utils: ^2.1.0
+    objectFitPolyfill: ^2.3.0
+    prop-types: ^15.7.2
+  peerDependencies:
+    gatsby: ^3.0.0-next.0
+    gatsby-plugin-sharp: ^3.0.0-next.0
+    gatsby-source-filesystem: ^3.0.0-next.0
+    react: ^16.9.0 || ^17.0.0
+    react-dom: ^16.9.0 || ^17.0.0
+  checksum: 792da138c9405679885259eb647d17967f32cc9af40adf865adcb4ee55c739dfd30cc5c6c8e94d8991d771e4c2ce4cbe27e794abfde5efd551b0873bcb01385f
   languageName: node
   linkType: hard
 
@@ -14777,13 +14805,6 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"object-fit-images@npm:^3.2.4":
-  version: 3.2.4
-  resolution: "object-fit-images@npm:3.2.4"
-  checksum: 0647ea1746d99098e4c0b1fc7ce5188a777f7968786f324079cf27fed96cb4789b8c9c7ddbaf7db55e123c42c30da648f71cd9071f969260215bfd93cbca8492
-  languageName: node
-  linkType: hard
-
 "object-inspect@npm:^1.8.0, object-inspect@npm:^1.9.0":
   version: 1.9.0
   resolution: "object-inspect@npm:1.9.0"
@@ -14912,6 +14933,13 @@ fsevents@~2.3.1:
     es-abstract: ^1.18.0-next.2
     has: ^1.0.3
   checksum: 31111fe8b8dfe7c3326ae8729eae542dc32d5705339b9b63d89d4a2f766641bfe8989744bd4771c65a7ca0dff281800e99640262c2e82daa97079143a86b3e0b
+  languageName: node
+  linkType: hard
+
+"objectFitPolyfill@npm:^2.3.0":
+  version: 2.3.5
+  resolution: "objectFitPolyfill@npm:2.3.5"
+  checksum: e2064ad56cd9e129face43af33d5786b5bc54cf2b2f30b9dd79ae718ab4f0db7632cce6c0ff7009eadb42f38e7061225623862d1f3e26b75cb6d572df87d75c5
   languageName: node
   linkType: hard
 
@@ -16702,6 +16730,18 @@ fsevents@~2.3.1:
     split-on-first: ^1.0.0
     strict-uri-encode: ^2.0.0
   checksum: 5d52ccd5988d60bb17990b287f2fa03d7d4eb3358f6716da7fc32c865196acf957cbdaa9272a36d60de80f06be67cbc7985c21432fecd75ab0166bbf06d87ff9
+  languageName: node
+  linkType: hard
+
+"query-string@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "query-string@npm:7.0.0"
+  dependencies:
+    decode-uri-component: ^0.2.0
+    filter-obj: ^1.1.0
+    split-on-first: ^1.0.0
+    strict-uri-encode: ^2.0.0
+  checksum: bfdb88aee494c246b1ed2614cd55e5ada111860755e4fa79271cbc6dcc8198db8d9b21873489f83a06027f78d293f37989b4602d36a642ea632cf22713ecc63d
   languageName: node
   linkType: hard
 

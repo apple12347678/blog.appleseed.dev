@@ -66,15 +66,25 @@ export default function BlogPostTemplate({
   );
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
   query BlogPostBySlug(
     $id: String!
+    $language: String!
     $previousPostId: String
     $nextPostId: String
   ) {
     site {
       siteMetadata {
         title
+      }
+    }
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
       }
     }
     markdownRemark(id: { eq: $id }) {

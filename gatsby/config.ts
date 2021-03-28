@@ -16,7 +16,12 @@ const config: GatsbyConfig = {
     site_url: 'https://blog.appleseed.dev',
   },
   plugins: [
-    // 'gatsby-plugin-graphql-codegen',
+    {
+      resolve: 'gatsby-plugin-graphql-codegen',
+      options: {
+        documentPaths: [`./src/**/*.{ts,tsx}`, `./gatsby/**/*.{ts,tsx}`],
+      },
+    },
     'gatsby-plugin-typescript',
     {
       resolve: 'gatsby-source-filesystem',
@@ -33,11 +38,19 @@ const config: GatsbyConfig = {
       },
     },
     {
-      resolve: 'gatsby-plugin-react-i18next',
+      resolve: 'gatsby-source-filesystem',
       options: {
         path: `${root}/content/locale`,
+        name: 'locale',
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-react-i18next',
+      options: {
+        localeJsonSourceName: 'locale',
         languages: ['en', 'ko'],
         defaultLanguage: 'ko',
+        siteUrl: 'https://blog.appleseed.dev/',
         i18nextOptions: {
           interpolation: {
             escapeValue: false,
@@ -111,16 +124,13 @@ const config: GatsbyConfig = {
         `,
         feeds: [
           {
-            serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.edges.map((edge) => {
-                return {
-                  ...edge.node.frontmatter,
-                  description: edge.node.excerpt,
-                  url: `${site.siteMetadata.site_url}${edge.node.fields.slug}`,
-                  custom_elements: [{ 'content:encoded': edge.node.html }],
-                };
-              });
-            },
+            serialize: ({ query: { site, allMarkdownRemark } }) =>
+              allMarkdownRemark.edges.map((edge) => ({
+                ...edge.node.frontmatter,
+                description: edge.node.excerpt,
+                url: `${site.siteMetadata.site_url}${edge.node.fields.slug}`,
+                custom_elements: [{ 'content:encoded': edge.node.html }],
+              })),
             query: `
               {
                 allMarkdownRemark {

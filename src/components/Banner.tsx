@@ -1,5 +1,7 @@
+import { ComponentProps } from 'react';
+
 import styled from '@emotion/styled';
-import Img, { FluidObject } from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { Trans, useTranslation } from 'react-i18next';
 
 const BannerContainer = styled.div`
@@ -14,7 +16,7 @@ const BannerContainer = styled.div`
   }
 `;
 
-const Avatar = styled(Img)`
+const Avatar = styled(GatsbyImage)`
   width: 120px;
   height: 120px;
   border-radius: 60px;
@@ -39,14 +41,14 @@ const Title = styled.h1`
 `;
 
 interface IBannerProps {
-  file: FluidObject;
+  image: ComponentProps<typeof GatsbyImage>['image'];
 }
 
-export default function Banner({ file }: IBannerProps) {
+export default function Banner({ image }: IBannerProps) {
   const { t } = useTranslation();
   return (
     <BannerContainer>
-      <Avatar fluid={file} />
+      <Avatar alt="" image={image} />
       <TextContainer>
         <Title>
           <Trans i18nKey="index.title">

@@ -1,5 +1,4 @@
 import { graphql } from 'gatsby';
-import { FluidObject } from 'gatsby-image';
 import { useTranslation } from 'react-i18next';
 
 import { HomeDataQuery } from '../../graphql-types';
@@ -17,7 +16,7 @@ export default function Home({ data }: IHomeProps) {
     <>
       <SEO title="Home" />
       <Container>
-        <Banner file={data.file!.childImageSharp!.fluid as FluidObject} />
+        <Banner image={data.file!.childImageSharp!.gatsbyImageData} />
         {posts.length === 0 ? (
           <p>{t('index.nopost')}</p>
         ) : (
@@ -40,18 +39,25 @@ export default function Home({ data }: IHomeProps) {
   );
 }
 
-export const pageQuery = graphql`
+export const query = graphql`
   query HomeData($language: String!, $postsPerPage: Int!) {
     site {
       siteMetadata {
         title
       }
     }
+    locales: allLocale(filter: { language: { eq: $language } }) {
+      edges {
+        node {
+          ns
+          data
+          language
+        }
+      }
+    }
     file(relativePath: { eq: "profile.jpg" }) {
       childImageSharp {
-        fluid {
-          ...GatsbyImageSharpFluid
-        }
+        gatsbyImageData
       }
     }
     allMarkdownRemark(
