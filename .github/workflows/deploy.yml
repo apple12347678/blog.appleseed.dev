@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - post
 
 jobs:
   test:
@@ -15,16 +14,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
       - name: Install dependencies
         run: yarn
       - name: Lint
@@ -48,16 +37,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14.x
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
-      - uses: actions/cache@v2
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
       - uses: actions/cache@v2
         with:
           path: |
