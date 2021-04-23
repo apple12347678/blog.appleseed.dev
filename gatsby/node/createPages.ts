@@ -2,9 +2,8 @@ import { GatsbyNode } from 'gatsby';
 import path from 'path';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const assertResult = (obj: any): obj is { data: any } => {
-  return obj.errors === undefined;
-};
+const assertResult = (obj: any): obj is { data: any } =>
+  obj.errors === undefined;
 
 const createPages: GatsbyNode['createPages'] = async ({
   graphql,

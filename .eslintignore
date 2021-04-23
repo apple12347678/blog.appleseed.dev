@@ -2,3 +2,4 @@ graphql-types.ts
 .cache
 gatsby-*.js
 public
+.pnp.js

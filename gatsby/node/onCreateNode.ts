@@ -31,7 +31,6 @@ const onCreateNode: GatsbyNode['onCreateNode'] = ({
     });
 
     const tagNodes = getNodesByType('Tag');
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (node.frontmatter as any).tags.forEach((newTag) => {
       const searchedTag = tagNodes.find((n) => n.name === newTag);
       if (!searchedTag) {

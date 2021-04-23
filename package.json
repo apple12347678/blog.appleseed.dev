@@ -8,22 +8,13 @@
     "type": "git",
     "url": "https://github.com/apple12347678/blog.appleseed.dev"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsc && lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,md}": "prettier --write",
-    "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
-  },
   "scripts": {
     "build": "gatsby build",
     "dev": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "tsc": "tsc",
-    "lint": "eslint --cache src",
+    "lint": "eslint --cache src gatsby",
     "lint:strict": "yarn lint --max-warnings=0",
     "lint:fix": "yarn lint --fix",
     "format": "prettier \"**/*.{js,jsx,ts,tsx,json,md}\"",
@@ -70,7 +61,6 @@
     "gatsby-transformer-remark": "^3.1.0",
     "gatsby-transformer-sharp": "^3.1.0",
     "graphql": "^15.5.0",
-    "husky": "^4.0.0",
     "i18next": "^20.1.0",
     "katex": "^0.13.0",
     "lodash": "^4.17.21",
@@ -114,7 +104,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.21",
-    "lint-staged": "^10.5.4",
     "prettier": "2.2.1",
     "ts-node": "^9.1.1",
     "typescript": "^4.2.3",

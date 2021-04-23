@@ -2,7 +2,6 @@ import { GatsbyNode } from 'gatsby';
 
 const createSchemaCustomization: GatsbyNode['createSchemaCustomization'] = async ({
   actions: { createTypes },
-  // eslint-disable-next-line @typescript-eslint/require-await
 }) => {
   createTypes(`
     type SiteSiteMetadata {
