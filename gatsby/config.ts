@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention,@typescript-eslint/no-unsafe-return */
 import { GatsbyConfig } from 'gatsby';
 import path from 'path';
 
@@ -9,8 +8,8 @@ const config: GatsbyConfig = {
     title: "appleseed's dev blog",
     author: {
       name: 'Chankyu Kang',
-      summary: 'A typescript developer, junior system architect',
-      email: 'apple12347678@gmail.com',
+      summary: 'Frontend developer & infrastructure architect',
+      email: 'ck.kenneth.kang@gmail.com',
     },
     description: 'A dev blog of appleseed',
     site_url: 'https://blog.appleseed.dev',
